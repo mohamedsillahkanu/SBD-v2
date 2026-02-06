@@ -98,6 +98,7 @@ body { background: #f5f5f5; font-family: 'Oswald', 'Segoe UI', Arial, sans-serif
 .form-label { display: block; font-size: 12px; font-weight: 600; color: #333; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
 .form-input, .form-select { width: 100%; padding: 10px 12px; border: 2px solid #ccc; border-radius: 6px; font-size: 14px; background: #fff; font-family: 'Oswald', 'Segoe UI', Arial, sans-serif; }
 .form-input:focus, .form-select:focus { outline: none; border-color: #0056a8; box-shadow: 0 0 0 3px rgba(0,64,128,0.1); }
+.form-input[readonly] { background: #e9ecef; color: #495057; cursor: not-allowed; }
 .form-select:disabled { background: #e9ecef; opacity: 0.6; }
 .form-input.error { border-color: #dc3545; background: #fff5f5; }
 .field-error { display: none; font-size: 11px; color: #dc3545; margin-top: 4px; }
@@ -107,6 +108,30 @@ body { background: #f5f5f5; font-family: 'Oswald', 'Segoe UI', Arial, sans-serif
 /* VALIDATION NOTE */
 .validation-note { background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 12px 15px; font-size: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .note-icon { width: 20px; height: 20px; stroke: #856404; flex-shrink: 0; }
+
+/* ITN RECEIVED BLOCK */
+.itn-received-block { background: #f8f9fa; border: 2px solid #0056a8; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+.itn-received-header { background: #0056a8; color: #fff; padding: 12px 15px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.itn-received-content { padding: 15px; }
+.block-icon { width: 20px; height: 20px; stroke: #fff; }
+
+/* CHECKBOX STYLES */
+.checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.checkbox-label { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px 15px; background: #fff; border: 2px solid #dee2e6; border-radius: 8px; transition: all 0.2s; }
+.checkbox-label:hover { border-color: #0056a8; background: #f8f9fa; }
+.checkbox-label input[type="checkbox"] { width: 20px; height: 20px; accent-color: #0056a8; cursor: pointer; }
+.checkbox-label input[type="checkbox"]:checked + .checkbox-text { color: #0056a8; font-weight: 600; }
+.checkbox-text { font-size: 13px; color: #333; }
+
+/* ITN QUANTITY FIELDS */
+.itn-quantity-fields { margin-top: 15px; padding: 15px; background: #e8f1fa; border-radius: 8px; }
+.itn-quantity-fields .form-group { margin-bottom: 12px; }
+.itn-quantity-total { display: flex; align-items: center; gap: 10px; padding: 10px 15px; background: #fff; border: 2px solid #dee2e6; border-radius: 6px; margin-top: 10px; }
+.qty-label { font-size: 12px; color: #666; font-weight: 500; }
+.qty-value { font-size: 18px; font-weight: 700; color: #0056a8; }
+.qty-status { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 12px; }
+.qty-status.match { background: #d4edda; color: #155724; }
+.qty-status.mismatch { background: #f8d7da; color: #721c24; }
 
 /* CLASS BLOCKS */
 .class-block { background: #f8f9fa; border: 2px solid #dee2e6; border-radius: 10px; margin-bottom: 15px; overflow: hidden; }
@@ -145,12 +170,43 @@ body { background: #f5f5f5; font-family: 'Oswald', 'Segoe UI', Arial, sans-serif
 .dash-card.blue { border-color: #0056a8; }
 .dash-card.pink { border-color: #e91e8c; }
 .dash-card.green { border-color: #28a745; }
+.dash-card.orange { border-color: #fd7e14; background: #fff8f0; }
+.dash-card.teal { border-color: #17a2b8; background: #f0fcff; }
 .dash-card.large { grid-column: span 3; }
 .dash-label { font-size: 11px; font-weight: 500; color: #666; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
 .dash-value { font-size: 28px; font-weight: 700; color: #0056a8; }
 .dash-card.pink .dash-value { color: #e91e8c; }
 .dash-card.green .dash-value { color: #28a745; }
+.dash-card.orange .dash-value { color: #fd7e14; }
+.dash-card.teal .dash-value { color: #17a2b8; }
 .dash-value.big { font-size: 36px; }
+.remaining-status { font-size: 11px; margin-top: 5px; font-weight: 600; }
+.remaining-status.warning { color: #dc3545; }
+.remaining-status.success { color: #28a745; }
+
+/* ITN RECEIVED BLOCK */
+.itn-received-block { background: #f8f9fa; border: 2px solid #0056a8; border-radius: 10px; margin-bottom: 15px; overflow: hidden; }
+.itn-received-header { background: #0056a8; color: #fff; padding: 12px 15px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.itn-received-content { padding: 15px; }
+.block-icon { width: 20px; height: 20px; stroke: #fff; }
+
+/* CHECKBOX GROUP */
+.checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.checkbox-label { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 10px 12px; background: #fff; border: 2px solid #dee2e6; border-radius: 6px; transition: all 0.2s; }
+.checkbox-label:hover { border-color: #0056a8; background: #f8f9fa; }
+.checkbox-label input[type="checkbox"] { width: 20px; height: 20px; accent-color: #0056a8; cursor: pointer; }
+.checkbox-label input[type="checkbox"]:checked + .checkbox-text { color: #0056a8; font-weight: 600; }
+.checkbox-text { font-size: 13px; color: #333; }
+
+/* ITN QUANTITY FIELDS */
+.itn-quantity-fields { margin-top: 15px; padding: 15px; background: #e8f1fa; border-radius: 8px; }
+.itn-quantity-fields .form-group { margin-bottom: 12px; }
+.itn-quantity-total { display: flex; align-items: center; gap: 10px; padding: 10px; background: #fff; border-radius: 6px; border: 2px solid #dee2e6; }
+.qty-label { font-size: 12px; font-weight: 600; color: #666; }
+.qty-value { font-size: 18px; font-weight: 700; color: #0056a8; }
+.qty-status { font-size: 11px; font-weight: 600; margin-left: auto; }
+.qty-status.match { color: #28a745; }
+.qty-status.mismatch { color: #dc3545; }
 
 /* GENDER BAR */
 .gender-bar-container { padding: 15px; background: #f8f9fa; border: 2px solid #dee2e6; border-top: none; border-radius: 0 0 8px 8px; }
@@ -230,6 +286,10 @@ body { background: #f5f5f5; font-family: 'Oswald', 'Segoe UI', Arial, sans-serif
 .modal-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Oswald', 'Segoe UI', Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
 .modal-btn.cancel { background: #e9ecef; color: #333; }
 .modal-btn.save { background: #ffc107; color: #000; }
+
+/* DRAFT NAME READONLY */
+.draft-name-readonly { background: #f8f9fa; color: #333; cursor: not-allowed; font-weight: 600; }
+.draft-name-hint { font-size: 10px; color: #666; font-style: italic; margin-top: 5px; margin-bottom: 10px; }
 
 /* DRAFTS */
 .draft-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8f9fa; border: 2px solid #dee2e6; border-radius: 8px; margin-bottom: 10px; }

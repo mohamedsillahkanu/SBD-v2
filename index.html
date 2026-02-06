@@ -2,15 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>School-Based ITN Distribution Survey - Sierra Leone</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="School-Based ITN Distribution Survey for Sierra Leone">
+    <meta name="theme-color" content="#0056a8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ITN Survey">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="ITN Survey">
+    <meta name="msapplication-TileColor" content="#0056a8">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
     
     <!-- Favicon - SBD Bold Design (Multiple Sizes) -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" sizes="48x48" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='6' fill='%230056a8'/%3E%3Ctext x='24' y='33' font-family='Impact,Arial Black,sans-serif' font-size='24' font-weight='900' fill='white' text-anchor='middle'%3ESBD%3C/text%3E%3Crect x='8' y='36' width='32' height='3' rx='1.5' fill='%23ffc107'/%3E%3C/svg%3E">
     <link rel="icon" sizes="32x32" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230056a8'/%3E%3Ctext x='16' y='22' font-family='Impact,Arial Black,sans-serif' font-size='16' font-weight='900' fill='white' text-anchor='middle'%3ESBD%3C/text%3E%3Crect x='5' y='24' width='22' height='2' rx='1' fill='%23ffc107'/%3E%3C/svg%3E">
     <link rel="icon" sizes="16x16" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%230056a8'/%3E%3Ctext x='8' y='12' font-family='Impact,Arial Black,sans-serif' font-size='9' font-weight='900' fill='white' text-anchor='middle'%3ESBD%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="apple-touch-icon" href="icon-192.svg">
     
     <!-- Oswald Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +37,18 @@
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
+    <!-- PWA Install Banner -->
+    <div class="install-banner" id="installBanner" style="display: none;">
+        <div class="install-content">
+            <svg class="install-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            <span class="install-text">Install ITN Survey App</span>
+            <button class="install-btn" id="installBtn">INSTALL</button>
+            <button class="install-close" id="installClose">&times;</button>
+        </div>
+    </div>
+
     <div class="main-content show" id="mainContent">
         <div class="page-container">
 
@@ -32,7 +58,7 @@
                     <img src="https://github.com/mohamedsillahkanu/gdp-dashboard-2/raw/6c7463b0d5c3be150aafae695a4bcbbd8aeb1499/ICF-SL.jpg" alt="ICF-SL Logo" class="header-logo-main">
                 </div>
                 <h3>Informatics Consultancy Firm-Sierra Leone (ICF-SL)</h3>
-                <p class="tagline"><em>Data-Driven Solutions for Health and Development</em></p>
+                <p class="tagline"><em>Driving Data-Driven Solutions for Health and Development</em></p>
                 <div class="header-divider"></div>
                 <h1>SCHOOL-BASED DISTRIBUTION OF ITNs</h1>
                 <p class="subtitle">Insecticide-Treated Nets Distribution Survey - Sierra Leone</p>
@@ -76,7 +102,7 @@
             <div class="photo-frame-section">
                 <div class="photo-frame">
                     <div class="photo-inner">
-                        <img src="infographics.png" alt="ITN Distribution" class="photo-image" id="photoImage" style="display:none;"
+                        <img src="distribution_photo.jpg" alt="ITN Distribution" class="photo-image" id="photoImage" style="display:none;"
                              onerror="this.style.display='none'; document.getElementById('photoPlaceholder').style.display='flex';"
                              onload="this.style.display='block'; document.getElementById('photoPlaceholder').style.display='none';">
                         <div class="photo-placeholder" id="photoPlaceholder" style="display:flex;">
@@ -369,7 +395,7 @@
                                 <div class="itn-received-content">
                                     <div class="form-group">
                                         <label class="form-label">TOTAL NUMBER OF ITNs RECEIVED <span class="required">*</span></label>
-                                        <input type="number" class="form-input" name="itns_received" id="itns_received" min="0" value="0" required>
+                                        <input type="number" class="form-input" name="itns_received" id="itns_received" min="0" placeholder="0" required>
                                         <div class="field-hint">Enter the total number of ITNs delivered to this school</div>
                                         <div class="field-error" id="error_itns_received">This field is required</div>
                                     </div>
@@ -392,12 +418,12 @@
                                     <div class="itn-quantity-fields" id="itn_quantity_fields" style="display: none;">
                                         <div class="form-group" id="pbo_quantity_group" style="display: none;">
                                             <label class="form-label">QUANTITY OF PBO ITNs <span class="required">*</span></label>
-                                            <input type="number" class="form-input itn-type-qty" name="itn_qty_pbo" id="itn_qty_pbo" min="0" value="0" oninput="validateITNQuantities()">
+                                            <input type="number" class="form-input itn-type-qty" name="itn_qty_pbo" id="itn_qty_pbo" min="0" placeholder="0" oninput="validateITNQuantities()">
                                             <div class="field-error" id="error_itn_qty_pbo">Enter PBO quantity</div>
                                         </div>
                                         <div class="form-group" id="ig2_quantity_group" style="display: none;">
                                             <label class="form-label">QUANTITY OF IG2 ITNs <span class="required">*</span></label>
-                                            <input type="number" class="form-input itn-type-qty" name="itn_qty_ig2" id="itn_qty_ig2" min="0" value="0" oninput="validateITNQuantities()">
+                                            <input type="number" class="form-input itn-type-qty" name="itn_qty_ig2" id="itn_qty_ig2" min="0" placeholder="0" oninput="validateITNQuantities()">
                                             <div class="field-error" id="error_itn_qty_ig2">Enter IG2 quantity</div>
                                         </div>
                                         <div class="itn-quantity-total" id="itn_quantity_total">
@@ -439,20 +465,20 @@
                                 <div class="class-grid">
                                     <div class="form-group">
                                         <label class="form-label">Number of Boys in Class 1 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c1_boys" id="c1_boys" min="0" value="0" required data-class="1" data-gender="boys">
+                                        <input type="number" class="form-input enrollment-field" name="c1_boys" id="c1_boys" min="0" placeholder="0" required data-class="1" data-gender="boys">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Boys in Class 1 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c1_boys_itn" id="c1_boys_itn" min="0" value="0" required data-class="1" data-gender="boys" data-max-field="c1_boys">
+                                        <input type="number" class="form-input itn-field" name="c1_boys_itn" id="c1_boys_itn" min="0" placeholder="0" required data-class="1" data-gender="boys" data-max-field="c1_boys">
                                         <div class="field-error" id="error_c1_boys_itn">Cannot exceed number of boys in Class 1</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Number of Girls in Class 1 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c1_girls" id="c1_girls" min="0" value="0" required data-class="1" data-gender="girls">
+                                        <input type="number" class="form-input enrollment-field" name="c1_girls" id="c1_girls" min="0" placeholder="0" required data-class="1" data-gender="girls">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Girls in Class 1 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c1_girls_itn" id="c1_girls_itn" min="0" value="0" required data-class="1" data-gender="girls" data-max-field="c1_girls">
+                                        <input type="number" class="form-input itn-field" name="c1_girls_itn" id="c1_girls_itn" min="0" placeholder="0" required data-class="1" data-gender="girls" data-max-field="c1_girls">
                                         <div class="field-error" id="error_c1_girls_itn">Cannot exceed number of girls in Class 1</div>
                                     </div>
                                 </div>
@@ -480,20 +506,20 @@
                                 <div class="class-grid">
                                     <div class="form-group">
                                         <label class="form-label">Number of Boys in Class 2 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c2_boys" id="c2_boys" min="0" value="0" required data-class="2" data-gender="boys">
+                                        <input type="number" class="form-input enrollment-field" name="c2_boys" id="c2_boys" min="0" placeholder="0" required data-class="2" data-gender="boys">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Boys in Class 2 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c2_boys_itn" id="c2_boys_itn" min="0" value="0" required data-class="2" data-gender="boys" data-max-field="c2_boys">
+                                        <input type="number" class="form-input itn-field" name="c2_boys_itn" id="c2_boys_itn" min="0" placeholder="0" required data-class="2" data-gender="boys" data-max-field="c2_boys">
                                         <div class="field-error" id="error_c2_boys_itn">Cannot exceed number of boys in Class 2</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Number of Girls in Class 2 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c2_girls" id="c2_girls" min="0" value="0" required data-class="2" data-gender="girls">
+                                        <input type="number" class="form-input enrollment-field" name="c2_girls" id="c2_girls" min="0" placeholder="0" required data-class="2" data-gender="girls">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Girls in Class 2 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c2_girls_itn" id="c2_girls_itn" min="0" value="0" required data-class="2" data-gender="girls" data-max-field="c2_girls">
+                                        <input type="number" class="form-input itn-field" name="c2_girls_itn" id="c2_girls_itn" min="0" placeholder="0" required data-class="2" data-gender="girls" data-max-field="c2_girls">
                                         <div class="field-error" id="error_c2_girls_itn">Cannot exceed number of girls in Class 2</div>
                                     </div>
                                 </div>
@@ -521,20 +547,20 @@
                                 <div class="class-grid">
                                     <div class="form-group">
                                         <label class="form-label">Number of Boys in Class 3 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c3_boys" id="c3_boys" min="0" value="0" required data-class="3" data-gender="boys">
+                                        <input type="number" class="form-input enrollment-field" name="c3_boys" id="c3_boys" min="0" placeholder="0" required data-class="3" data-gender="boys">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Boys in Class 3 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c3_boys_itn" id="c3_boys_itn" min="0" value="0" required data-class="3" data-gender="boys" data-max-field="c3_boys">
+                                        <input type="number" class="form-input itn-field" name="c3_boys_itn" id="c3_boys_itn" min="0" placeholder="0" required data-class="3" data-gender="boys" data-max-field="c3_boys">
                                         <div class="field-error" id="error_c3_boys_itn">Cannot exceed number of boys in Class 3</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Number of Girls in Class 3 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c3_girls" id="c3_girls" min="0" value="0" required data-class="3" data-gender="girls">
+                                        <input type="number" class="form-input enrollment-field" name="c3_girls" id="c3_girls" min="0" placeholder="0" required data-class="3" data-gender="girls">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Girls in Class 3 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c3_girls_itn" id="c3_girls_itn" min="0" value="0" required data-class="3" data-gender="girls" data-max-field="c3_girls">
+                                        <input type="number" class="form-input itn-field" name="c3_girls_itn" id="c3_girls_itn" min="0" placeholder="0" required data-class="3" data-gender="girls" data-max-field="c3_girls">
                                         <div class="field-error" id="error_c3_girls_itn">Cannot exceed number of girls in Class 3</div>
                                     </div>
                                 </div>
@@ -562,20 +588,20 @@
                                 <div class="class-grid">
                                     <div class="form-group">
                                         <label class="form-label">Number of Boys in Class 4 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c4_boys" id="c4_boys" min="0" value="0" required data-class="4" data-gender="boys">
+                                        <input type="number" class="form-input enrollment-field" name="c4_boys" id="c4_boys" min="0" placeholder="0" required data-class="4" data-gender="boys">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Boys in Class 4 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c4_boys_itn" id="c4_boys_itn" min="0" value="0" required data-class="4" data-gender="boys" data-max-field="c4_boys">
+                                        <input type="number" class="form-input itn-field" name="c4_boys_itn" id="c4_boys_itn" min="0" placeholder="0" required data-class="4" data-gender="boys" data-max-field="c4_boys">
                                         <div class="field-error" id="error_c4_boys_itn">Cannot exceed number of boys in Class 4</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Number of Girls in Class 4 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c4_girls" id="c4_girls" min="0" value="0" required data-class="4" data-gender="girls">
+                                        <input type="number" class="form-input enrollment-field" name="c4_girls" id="c4_girls" min="0" placeholder="0" required data-class="4" data-gender="girls">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Girls in Class 4 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c4_girls_itn" id="c4_girls_itn" min="0" value="0" required data-class="4" data-gender="girls" data-max-field="c4_girls">
+                                        <input type="number" class="form-input itn-field" name="c4_girls_itn" id="c4_girls_itn" min="0" placeholder="0" required data-class="4" data-gender="girls" data-max-field="c4_girls">
                                         <div class="field-error" id="error_c4_girls_itn">Cannot exceed number of girls in Class 4</div>
                                     </div>
                                 </div>
@@ -603,20 +629,20 @@
                                 <div class="class-grid">
                                     <div class="form-group">
                                         <label class="form-label">Number of Boys in Class 5 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c5_boys" id="c5_boys" min="0" value="0" required data-class="5" data-gender="boys">
+                                        <input type="number" class="form-input enrollment-field" name="c5_boys" id="c5_boys" min="0" placeholder="0" required data-class="5" data-gender="boys">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Boys in Class 5 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c5_boys_itn" id="c5_boys_itn" min="0" value="0" required data-class="5" data-gender="boys" data-max-field="c5_boys">
+                                        <input type="number" class="form-input itn-field" name="c5_boys_itn" id="c5_boys_itn" min="0" placeholder="0" required data-class="5" data-gender="boys" data-max-field="c5_boys">
                                         <div class="field-error" id="error_c5_boys_itn">Cannot exceed number of boys in Class 5</div>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Number of Girls in Class 5 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c5_girls" id="c5_girls" min="0" value="0" required data-class="5" data-gender="girls">
+                                        <input type="number" class="form-input enrollment-field" name="c5_girls" id="c5_girls" min="0" placeholder="0" required data-class="5" data-gender="girls">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Girls in Class 5 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c5_girls_itn" id="c5_girls_itn" min="0" value="0" required data-class="5" data-gender="girls" data-max-field="c5_girls">
+                                        <input type="number" class="form-input itn-field" name="c5_girls_itn" id="c5_girls_itn" min="0" placeholder="0" required data-class="5" data-gender="girls" data-max-field="c5_girls">
                                         <div class="field-error" id="error_c5_girls_itn">Cannot exceed number of girls in Class 5</div>
                                     </div>
                                 </div>

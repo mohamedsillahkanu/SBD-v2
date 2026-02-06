@@ -26,15 +26,16 @@ body { background: #f5f5f5; font-family: 'Oswald', 'Segoe UI', Arial, sans-serif
 .partners-label { text-align: center; font-size: 10px; color: #0056a8; font-weight: 600; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
 .partners-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
 .partner-logo-card { text-align: center; }
-.partner-logo-img { width: 60px; height: 60px; background: #f8f9fa; border: 2px solid #dee2e6; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 5px; overflow: hidden; }
-.partner-logo-img img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
-.logo-placeholder-box { display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #e8f1fa, #f0f4f8); align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #0056a8; letter-spacing: 0.5px; }
+.partner-logo-img { width: 60px; height: 60px; background: #f8f9fa; border: 2px solid #dee2e6; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 5px; overflow: hidden; position: relative; }
+.partner-logo-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; padding: 4px; display: none; }
+.logo-placeholder-box { display: flex; width: 100%; height: 100%; background: linear-gradient(135deg, #e8f1fa, #f0f4f8); align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #0056a8; letter-spacing: 0.5px; text-transform: uppercase; }
 .partner-name { font-size: 9px; font-weight: 700; color: #0056a8; display: block; max-width: 80px; }
 
 /* PHOTO FRAME */
 .photo-frame-section { background: #fff; border: 2px solid #0056a8; border-top: none; padding: 12px; }
-.photo-inner { background: linear-gradient(135deg, #e8eef5, #f0f4f8); border: 3px solid #0056a8; border-radius: 6px; min-height: 150px; display: flex; align-items: center; justify-content: center; }
-.photo-placeholder { text-align: center; padding: 20px; }
+.photo-inner { background: linear-gradient(135deg, #e8eef5, #f0f4f8); border: 3px solid #0056a8; border-radius: 6px; min-height: 150px; max-height: 250px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+.photo-image { max-width: 100%; max-height: 250px; width: auto; height: auto; object-fit: contain; display: none; }
+.photo-placeholder { text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .photo-icon { width: 48px; height: 48px; stroke: #0056a8; opacity: 0.4; margin-bottom: 8px; }
 .photo-placeholder-text { font-size: 12px; font-weight: 700; color: #0056a8; }
 .photo-placeholder-hint { font-size: 9px; color: #666; margin-top: 5px; }

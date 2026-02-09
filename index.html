@@ -19,11 +19,8 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     
-    <!-- Favicon - SBD Bold Design (Multiple Sizes) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" sizes="48x48" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='6' fill='%230056a8'/%3E%3Ctext x='24' y='33' font-family='Impact,Arial Black,sans-serif' font-size='24' font-weight='900' fill='white' text-anchor='middle'%3ESBD%3C/text%3E%3Crect x='8' y='36' width='32' height='3' rx='1.5' fill='%23ffc107'/%3E%3C/svg%3E">
-    <link rel="icon" sizes="32x32" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230056a8'/%3E%3Ctext x='16' y='22' font-family='Impact,Arial Black,sans-serif' font-size='16' font-weight='900' fill='white' text-anchor='middle'%3ESBD%3C/text%3E%3Crect x='5' y='24' width='22' height='2' rx='1' fill='%23ffc107'/%3E%3C/svg%3E">
-    <link rel="icon" sizes="16x16" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%230056a8'/%3E%3Ctext x='8' y='12' font-family='Impact,Arial Black,sans-serif' font-size='9' font-weight='900' fill='white' text-anchor='middle'%3ESBD%3C/text%3E%3C/svg%3E">
     <link rel="apple-touch-icon" href="icon-192.svg">
     
     <!-- Oswald Font -->
@@ -37,15 +34,14 @@
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
-    <!-- PWA Install Banner -->
-    <div class="install-banner" id="installBanner" style="display: none;">
+    <!-- PWA Install Banner - Always Visible, Green Button -->
+    <div class="install-banner" id="installBanner">
         <div class="install-content">
             <svg class="install-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
             <span class="install-text">Install ITN Survey App</span>
             <button class="install-btn" id="installBtn">INSTALL</button>
-            <button class="install-close" id="installClose">&times;</button>
         </div>
     </div>
 
@@ -127,33 +123,23 @@
             <!-- CONTROLS -->
             <div class="controls-bar">
                 <button class="control-btn" id="viewDataBtn">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 3h18v18H3zM3 9h18M9 21V9"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg>
                     VIEW DATA
                 </button>
                 <button class="control-btn" id="downloadDataBtn">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                     DOWNLOAD
                 </button>
                 <button class="control-btn" id="viewAnalysisBtn">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 20V10M12 20V4M6 20v-6"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
                     ANALYSIS
                 </button>
                 <button class="control-btn draft-btn" id="viewDraftsBtn">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                     DRAFTS
                 </button>
                 <button class="control-btn update-btn" id="updateAppBtn" onclick="updateApp()">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 2v6h-6M3 12a9 9 0 0115.36-6.36L21 8M3 22v-6h6M21 12a9 9 0 01-15.36 6.36L3 16"/>
-                    </svg>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6M3 12a9 9 0 0115.36-6.36L21 8M3 22v-6h6M21 12a9 9 0 01-15.36 6.36L3 16"/></svg>
                     UPDATE
                 </button>
             </div>
@@ -188,856 +174,259 @@
                         <!-- SECTION 1: INTRODUCTION -->
                         <div class="form-section active" data-section="1">
                             <div class="section-header">
-                                <div class="section-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h2 class="section-title">SECTION A: INTRODUCTION</h2>
-                                    <p class="section-description">About the School-Based ITN Distribution Survey</p>
-                                </div>
+                                <div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></div>
+                                <div><h2 class="section-title">SECTION A: INTRODUCTION</h2><p class="section-description">About the School-Based ITN Distribution Survey</p></div>
                             </div>
-
                             <div class="intro-card">
-                                <div class="intro-icon-large">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <path d="M2 4l3 12h14l3-12H2zM3 16l-1 4h20l-1-4"/>
-                                    </svg>
-                                </div>
+                                <div class="intro-icon-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l3 12h14l3-12H2zM3 16l-1 4h20l-1-4"/></svg></div>
                                 <h3 class="intro-heading">ABOUT THIS SURVEY</h3>
-                                <p class="intro-paragraph">
-                                    The <strong>School-Based Distribution of Insecticide-Treated Nets (ITNs)</strong> is a key 
-                                    malaria prevention strategy implemented by the <strong>National Malaria Control Programme (NMCP)</strong> 
-                                    under the <strong>Ministry of Health and Sanitation (MoHS)</strong> of Sierra Leone.
-                                </p>
-                                <p class="intro-paragraph">
-                                    This digital survey tool captures real-time data on ITN distribution activities in primary schools 
-                                    across all districts. It collects enrollment data by class and gender, tracks ITN distribution, 
-                                    and automatically calculates coverage statistics.
-                                </p>
-
+                                <p class="intro-paragraph">The <strong>School-Based Distribution of Insecticide-Treated Nets (ITNs)</strong> is a key malaria prevention strategy implemented by the <strong>National Malaria Control Programme (NMCP)</strong> under the <strong>Ministry of Health and Sanitation (MoHS)</strong> of Sierra Leone.</p>
+                                <p class="intro-paragraph">This digital survey tool captures real-time data on ITN distribution activities in primary schools across all districts. It collects enrollment data by class and gender, tracks ITN distribution, and automatically calculates coverage statistics.</p>
                                 <div class="intro-features">
-                                    <div class="intro-feature">
-                                        <div class="feature-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-                                            </svg>
-                                        </div>
-                                        <div><div class="feature-title">CLASS-BY-CLASS TRACKING</div><div class="feature-desc">Record enrollment and ITN distribution for Classes 1-5</div></div>
-                                    </div>
-                                    <div class="intro-feature">
-                                        <div class="feature-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/>
-                                            </svg>
-                                        </div>
-                                        <div><div class="feature-title">GENDER DISAGGREGATION</div><div class="feature-desc">Track boys and girls separately with automatic totals</div></div>
-                                    </div>
-                                    <div class="intro-feature">
-                                        <div class="feature-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <path d="M18 20V10M12 20V4M6 20v-6"/>
-                                            </svg>
-                                        </div>
-                                        <div><div class="feature-title">AUTO-CALCULATIONS</div><div class="feature-desc">Real-time totals, proportions, and coverage statistics</div></div>
-                                    </div>
-                                    <div class="intro-feature">
-                                        <div class="feature-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-                                            </svg>
-                                        </div>
-                                        <div><div class="feature-title">BUILT-IN VALIDATION</div><div class="feature-desc">Ensures ITNs distributed cannot exceed enrollment</div></div>
-                                    </div>
+                                    <div class="intro-feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div><div class="feature-title">CLASS-BY-CLASS TRACKING</div><div class="feature-desc">Record enrollment and ITN distribution for Classes 1-5</div></div></div>
+                                    <div class="intro-feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg></div><div><div class="feature-title">GENDER DISAGGREGATION</div><div class="feature-desc">Track boys and girls separately with automatic totals</div></div></div>
+                                    <div class="intro-feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div><div class="feature-title">AUTO-CALCULATIONS</div><div class="feature-desc">Real-time totals, proportions, and coverage statistics</div></div></div>
+                                    <div class="intro-feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div><div class="feature-title">BUILT-IN VALIDATION</div><div class="feature-desc">Ensures ITNs distributed cannot exceed enrollment</div></div></div>
                                 </div>
-
-                                <div class="intro-instructions">
-                                    <svg class="instructions-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
-                                    </svg>
-                                    <div>
-                                        <strong>Instructions:</strong> Complete all sections accurately. Fields marked with 
-                                        <span class="required">*</span> are mandatory. You can save drafts anytime and submit when ready.
-                                    </div>
-                                </div>
+                                <div class="intro-instructions"><svg class="instructions-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><div><strong>Instructions:</strong> Complete all sections accurately. Fields marked with <span class="required">*</span> are mandatory. You can save drafts anytime and submit when ready.</div></div>
                             </div>
-
-                            <div class="navigation-buttons">
-                                <button type="button" class="btn-nav btn-next full-width" onclick="nextSection()">
-                                    START SURVEY
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="9 18 15 12 9 6"/>
-                                    </svg>
-                                </button>
-                            </div>
+                            <div class="navigation-buttons"><button type="button" class="btn-nav btn-next full-width" onclick="nextSection()">START SURVEY <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div>
                         </div>
 
                         <!-- SECTION 2: SCHOOL PROFILE -->
                         <div class="form-section" data-section="2">
-                            <div class="section-header">
-                                <div class="section-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h2 class="section-title">SECTION B: SCHOOL PROFILE</h2>
-                                    <p class="section-description">School identification and location details</p>
-                                </div>
-                            </div>
+                            <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div><h2 class="section-title">SECTION B: SCHOOL PROFILE</h2><p class="section-description">School identification and location details</p></div></div>
 
-                            <div class="form-group">
-                                <label class="form-label">DISTRICT <span class="required">*</span></label>
-                                <select class="form-select" name="district" id="district" required>
-                                    <option value="">Select District...</option>
-                                </select>
-                                <div class="cascade-count" id="count_district"></div>
-                                <div class="field-error" id="error_district">Please select a district</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">CHIEFDOM <span class="required">*</span></label>
-                                <select class="form-select" name="chiefdom" id="chiefdom" required disabled>
-                                    <option value="">Select Chiefdom...</option>
-                                </select>
-                                <div class="cascade-count" id="count_chiefdom"></div>
-                                <div class="field-error" id="error_chiefdom">Please select a chiefdom</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">SECTION <span class="required">*</span></label>
-                                <select class="form-select" name="section_loc" id="section_loc" required disabled>
-                                    <option value="">Select Section...</option>
-                                </select>
-                                <div class="cascade-count" id="count_section_loc"></div>
-                                <div class="field-error" id="error_section_loc">Please select a section</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">NEAREST HEALTH FACILITY <span class="required">*</span></label>
-                                <select class="form-select" name="facility" id="facility" required disabled>
-                                    <option value="">Select Health Facility...</option>
-                                </select>
-                                <div class="cascade-count" id="count_facility"></div>
-                                <div class="field-error" id="error_facility">Please select a facility</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">COMMUNITY / TOWN / VILLAGE <span class="required">*</span></label>
-                                <select class="form-select" name="community" id="community" required disabled>
-                                    <option value="">Select Community...</option>
-                                </select>
-                                <div class="cascade-count" id="count_community"></div>
-                                <div class="field-error" id="error_community">Please select a community</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">SCHOOL NAME <span class="required">*</span></label>
-                                <select class="form-select" name="school_name" id="school_name" required disabled>
-                                    <option value="">Select School...</option>
-                                </select>
-                                <div class="cascade-count" id="count_school_name"></div>
-                                <div class="field-error" id="error_school_name">Please select a school</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">HEAD TEACHER NAME <span class="required">*</span></label>
-                                <input type="text" class="form-input name-field" name="head_teacher" id="head_teacher" required>
-                                <div class="field-error" id="error_head_teacher">Name must contain only letters</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">HEAD TEACHER PHONE <span class="required">*</span></label>
-                                <input type="tel" class="form-input" name="head_teacher_phone" id="head_teacher_phone" required pattern="[0-9]{9}" maxlength="9">
-                                <div class="field-hint">Enter 9-digit phone number</div>
-                                <div class="field-error" id="error_head_teacher_phone">Please enter a valid 9-digit phone number</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">DATE OF DISTRIBUTION <span class="required">*</span></label>
-                                <input type="date" class="form-input" name="distribution_date" id="distribution_date" required>
-                                <div class="field-error" id="error_distribution_date">This field is required</div>
-                            </div>
+                            <div class="form-group"><label class="form-label">DISTRICT <span class="required">*</span></label><select class="form-select" name="district" id="district" required><option value="">Select District...</option></select><div class="cascade-count" id="count_district"></div><div class="field-error" id="error_district">Please select a district</div></div>
+                            <div class="form-group"><label class="form-label">CHIEFDOM <span class="required">*</span></label><select class="form-select" name="chiefdom" id="chiefdom" required disabled><option value="">Select Chiefdom...</option></select><div class="cascade-count" id="count_chiefdom"></div><div class="field-error" id="error_chiefdom">Please select a chiefdom</div></div>
+                            <div class="form-group"><label class="form-label">SECTION <span class="required">*</span></label><select class="form-select" name="section_loc" id="section_loc" required disabled><option value="">Select Section...</option></select><div class="cascade-count" id="count_section_loc"></div><div class="field-error" id="error_section_loc">Please select a section</div></div>
+                            <div class="form-group"><label class="form-label">NEAREST HEALTH FACILITY <span class="required">*</span></label><select class="form-select" name="facility" id="facility" required disabled><option value="">Select Health Facility...</option></select><div class="cascade-count" id="count_facility"></div><div class="field-error" id="error_facility">Please select a facility</div></div>
+                            <div class="form-group"><label class="form-label">COMMUNITY / TOWN / VILLAGE <span class="required">*</span></label><select class="form-select" name="community" id="community" required disabled><option value="">Select Community...</option></select><div class="cascade-count" id="count_community"></div><div class="field-error" id="error_community">Please select a community</div></div>
+                            <div class="form-group"><label class="form-label">SCHOOL NAME <span class="required">*</span></label><select class="form-select" name="school_name" id="school_name" required disabled><option value="">Select School...</option></select><div class="cascade-count" id="count_school_name"></div><div class="field-error" id="error_school_name">Please select a school</div></div>
+                            <div class="form-group"><label class="form-label">HEAD TEACHER NAME <span class="required">*</span></label><input type="text" class="form-input name-field" name="head_teacher" id="head_teacher" required><div class="field-error" id="error_head_teacher">Name must contain only letters</div></div>
+                            <div class="form-group"><label class="form-label">HEAD TEACHER PHONE <span class="required">*</span></label><input type="tel" class="form-input" name="head_teacher_phone" id="head_teacher_phone" required pattern="[0-9]{9}" maxlength="9"><div class="field-hint">Enter 9-digit phone number</div><div class="field-error" id="error_head_teacher_phone">Please enter a valid 9-digit phone number</div></div>
+                            <div class="form-group"><label class="form-label">DATE OF DISTRIBUTION <span class="required">*</span></label><input type="date" class="form-input" name="distribution_date" id="distribution_date" required><div class="field-error" id="error_distribution_date">This field is required</div></div>
 
                             <div class="navigation-buttons">
-                                <button type="button" class="btn-nav btn-back" onclick="previousSection()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-                                    BACK
-                                </button>
-                                <button type="button" class="btn-nav btn-draft" onclick="showDraftNameModal()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                                    SAVE
-                                </button>
-                                <button type="button" class="btn-nav btn-next" onclick="nextSection()">
-                                    NEXT
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-                                </button>
+                                <button type="button" class="btn-nav btn-back" onclick="previousSection()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> BACK</button>
+                                <button type="button" class="btn-nav btn-draft" onclick="showDraftNameModal()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> SAVE</button>
+                                <button type="button" class="btn-nav btn-next" onclick="nextSection()">NEXT <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
                             </div>
                         </div>
 
                         <!-- SECTION 3: CLASS ENROLLMENT & ITN DISTRIBUTION -->
                         <div class="form-section" data-section="3">
-                            <div class="section-header">
-                                <div class="section-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h2 class="section-title">SECTION C: ENROLLMENT & ITN DISTRIBUTION</h2>
-                                    <p class="section-description">Enter enrollment and ITN data for each class</p>
-                                </div>
-                            </div>
+                            <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><h2 class="section-title">SECTION C: ENROLLMENT & ITN DISTRIBUTION</h2><p class="section-description">Enter enrollment and ITN data for each class</p></div></div>
 
                             <!-- ITN RECEIVED IN SCHOOL -->
                             <div class="itn-received-block">
-                                <div class="itn-received-header">
-                                    <svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
-                                    </svg>
-                                    ITNs RECEIVED IN SCHOOL
-                                </div>
+                                <div class="itn-received-header"><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> ITNs RECEIVED IN SCHOOL</div>
                                 <div class="itn-received-content">
-                                    <div class="form-group">
-                                        <label class="form-label">TOTAL NUMBER OF ITNs RECEIVED <span class="required">*</span></label>
-                                        <input type="number" class="form-input" name="itns_received" id="itns_received" min="0" placeholder="0" required>
-                                        <div class="field-hint">Enter the total number of ITNs delivered to this school</div>
-                                        <div class="field-error" id="error_itns_received">This field is required</div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="form-label">ITN TYPE(S) RECEIVED <span class="required">*</span></label>
+                                    <div class="form-group"><label class="form-label">TOTAL NUMBER OF ITNs RECEIVED <span class="required">*</span></label><input type="number" class="form-input" name="itns_received" id="itns_received" min="0" placeholder="0" required><div class="field-hint">Enter the total number of ITNs delivered to this school</div><div class="field-error" id="error_itns_received">This field is required</div></div>
+                                    <div class="form-group"><label class="form-label">ITN TYPE(S) RECEIVED <span class="required">*</span></label>
                                         <div class="checkbox-group">
-                                            <label class="checkbox-label">
-                                                <input type="checkbox" name="itn_type_pbo" id="itn_type_pbo" value="PBO" onchange="toggleITNTypeQuantity()">
-                                                <span class="checkbox-text">PBO (Piperonyl Butoxide)</span>
-                                            </label>
-                                            <label class="checkbox-label">
-                                                <input type="checkbox" name="itn_type_ig2" id="itn_type_ig2" value="IG2" onchange="toggleITNTypeQuantity()">
-                                                <span class="checkbox-text">IG2 (Interceptor G2)</span>
-                                            </label>
+                                            <label class="checkbox-label"><input type="checkbox" name="itn_type_pbo" id="itn_type_pbo" value="PBO" onchange="toggleITNTypeQuantity()"><span class="checkbox-text">PBO (Piperonyl Butoxide)</span></label>
+                                            <label class="checkbox-label"><input type="checkbox" name="itn_type_ig2" id="itn_type_ig2" value="IG2" onchange="toggleITNTypeQuantity()"><span class="checkbox-text">IG2 (Interceptor G2)</span></label>
                                         </div>
                                         <div class="field-error" id="error_itn_type">Please select at least one ITN type</div>
                                     </div>
-
                                     <div class="itn-quantity-fields" id="itn_quantity_fields" style="display: none;">
-                                        <div class="form-group" id="pbo_quantity_group" style="display: none;">
-                                            <label class="form-label">QUANTITY OF PBO ITNs <span class="required">*</span></label>
-                                            <input type="number" class="form-input itn-type-qty" name="itn_qty_pbo" id="itn_qty_pbo" min="0" placeholder="0" oninput="validateITNQuantities()">
-                                            <div class="field-error" id="error_itn_qty_pbo">Enter PBO quantity</div>
-                                        </div>
-                                        <div class="form-group" id="ig2_quantity_group" style="display: none;">
-                                            <label class="form-label">QUANTITY OF IG2 ITNs <span class="required">*</span></label>
-                                            <input type="number" class="form-input itn-type-qty" name="itn_qty_ig2" id="itn_qty_ig2" min="0" placeholder="0" oninput="validateITNQuantities()">
-                                            <div class="field-error" id="error_itn_qty_ig2">Enter IG2 quantity</div>
-                                        </div>
-                                        <div class="itn-quantity-total" id="itn_quantity_total">
-                                            <span class="qty-label">Total from types:</span>
-                                            <span class="qty-value" id="itn_type_total">0</span>
-                                            <span class="qty-status" id="itn_qty_status"></span>
-                                        </div>
+                                        <div class="form-group" id="pbo_quantity_group" style="display: none;"><label class="form-label">QUANTITY OF PBO ITNs <span class="required">*</span></label><input type="number" class="form-input itn-type-qty" name="itn_qty_pbo" id="itn_qty_pbo" min="0" placeholder="0" oninput="validateITNQuantities()"><div class="field-error" id="error_itn_qty_pbo">Enter PBO quantity</div></div>
+                                        <div class="form-group" id="ig2_quantity_group" style="display: none;"><label class="form-label">QUANTITY OF IG2 ITNs <span class="required">*</span></label><input type="number" class="form-input itn-type-qty" name="itn_qty_ig2" id="itn_qty_ig2" min="0" placeholder="0" oninput="validateITNQuantities()"><div class="field-error" id="error_itn_qty_ig2">Enter IG2 quantity</div></div>
+                                        <div class="itn-quantity-total" id="itn_quantity_total"><span class="qty-label">Total from types:</span><span class="qty-value" id="itn_type_total">0</span><span class="qty-status" id="itn_qty_status"></span></div>
                                         <div class="field-error" id="error_itn_qty_mismatch" style="display: none;">ITN type quantities must equal total ITNs received</div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="validation-note">
-                                <svg class="note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-                                </svg>
-                                <strong>Validation Rule:</strong> Number of pupils who received ITNs cannot exceed the number enrolled.
-                            </div>
+                            <div class="validation-note"><svg class="note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><strong>Validation Rule:</strong> Number of pupils who received ITNs cannot exceed the number enrolled.</div>
 
-                            <!-- CLASS 1 -->
                             <div class="class-block">
-                                <div class="class-header">
-                                    <svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-                                    </svg>
-                                    CLASS 1
-                                </div>
+                                <div class="class-header"><svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> CLASS 1</div>
                                 <div class="teacher-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Name <span class="required">*</span></label>
-                                        <input type="text" class="form-input name-field" name="c1_teacher_name" id="c1_teacher_name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Phone <span class="required">*</span></label>
-                                        <input type="tel" class="form-input phone-field" name="c1_teacher_phone" id="c1_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits">
-                                        <div class="field-error" id="error_c1_teacher_phone">Enter 9-digit number</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Teacher Name <span class="required">*</span></label><input type="text" class="form-input name-field" name="c1_teacher_name" id="c1_teacher_name" required></div>
+                                    <div class="form-group"><label class="form-label">Teacher Phone <span class="required">*</span></label><input type="tel" class="form-input phone-field" name="c1_teacher_phone" id="c1_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits"><div class="field-error" id="error_c1_teacher_phone">Enter 9-digit number</div></div>
                                 </div>
                                 <div class="class-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Boys in Class 1 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c1_boys" id="c1_boys" min="0" placeholder="0" required data-class="1" data-gender="boys">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Boys in Class 1 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c1_boys_itn" id="c1_boys_itn" min="0" placeholder="0" required data-class="1" data-gender="boys" data-max-field="c1_boys">
-                                        <div class="field-error" id="error_c1_boys_itn">Cannot exceed number of boys in Class 1</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Girls in Class 1 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c1_girls" id="c1_girls" min="0" placeholder="0" required data-class="1" data-gender="girls">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Girls in Class 1 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c1_girls_itn" id="c1_girls_itn" min="0" placeholder="0" required data-class="1" data-gender="girls" data-max-field="c1_girls">
-                                        <div class="field-error" id="error_c1_girls_itn">Cannot exceed number of girls in Class 1</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Number of Boys in Class 1 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c1_boys" id="c1_boys" min="0" placeholder="0" required data-class="1" data-gender="boys"></div>
+                                    <div class="form-group"><label class="form-label">Boys in Class 1 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c1_boys_itn" id="c1_boys_itn" min="0" placeholder="0" required data-class="1" data-gender="boys" data-max-field="c1_boys"><div class="field-error" id="error_c1_boys_itn">Cannot exceed number of boys in Class 1</div></div>
+                                    <div class="form-group"><label class="form-label">Number of Girls in Class 1 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c1_girls" id="c1_girls" min="0" placeholder="0" required data-class="1" data-gender="girls"></div>
+                                    <div class="form-group"><label class="form-label">Girls in Class 1 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c1_girls_itn" id="c1_girls_itn" min="0" placeholder="0" required data-class="1" data-gender="girls" data-max-field="c1_girls"><div class="field-error" id="error_c1_girls_itn">Cannot exceed number of girls in Class 1</div></div>
                                 </div>
                             </div>
 
-                            <!-- CLASS 2 -->
                             <div class="class-block">
-                                <div class="class-header">
-                                    <svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-                                    </svg>
-                                    CLASS 2
-                                </div>
+                                <div class="class-header"><svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> CLASS 2</div>
                                 <div class="teacher-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Name <span class="required">*</span></label>
-                                        <input type="text" class="form-input name-field" name="c2_teacher_name" id="c2_teacher_name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Phone <span class="required">*</span></label>
-                                        <input type="tel" class="form-input phone-field" name="c2_teacher_phone" id="c2_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits">
-                                        <div class="field-error" id="error_c2_teacher_phone">Enter 9-digit number</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Teacher Name <span class="required">*</span></label><input type="text" class="form-input name-field" name="c2_teacher_name" id="c2_teacher_name" required></div>
+                                    <div class="form-group"><label class="form-label">Teacher Phone <span class="required">*</span></label><input type="tel" class="form-input phone-field" name="c2_teacher_phone" id="c2_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits"><div class="field-error" id="error_c2_teacher_phone">Enter 9-digit number</div></div>
                                 </div>
                                 <div class="class-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Boys in Class 2 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c2_boys" id="c2_boys" min="0" placeholder="0" required data-class="2" data-gender="boys">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Boys in Class 2 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c2_boys_itn" id="c2_boys_itn" min="0" placeholder="0" required data-class="2" data-gender="boys" data-max-field="c2_boys">
-                                        <div class="field-error" id="error_c2_boys_itn">Cannot exceed number of boys in Class 2</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Girls in Class 2 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c2_girls" id="c2_girls" min="0" placeholder="0" required data-class="2" data-gender="girls">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Girls in Class 2 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c2_girls_itn" id="c2_girls_itn" min="0" placeholder="0" required data-class="2" data-gender="girls" data-max-field="c2_girls">
-                                        <div class="field-error" id="error_c2_girls_itn">Cannot exceed number of girls in Class 2</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Number of Boys in Class 2 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c2_boys" id="c2_boys" min="0" placeholder="0" required data-class="2" data-gender="boys"></div>
+                                    <div class="form-group"><label class="form-label">Boys in Class 2 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c2_boys_itn" id="c2_boys_itn" min="0" placeholder="0" required data-class="2" data-gender="boys" data-max-field="c2_boys"><div class="field-error" id="error_c2_boys_itn">Cannot exceed number of boys in Class 2</div></div>
+                                    <div class="form-group"><label class="form-label">Number of Girls in Class 2 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c2_girls" id="c2_girls" min="0" placeholder="0" required data-class="2" data-gender="girls"></div>
+                                    <div class="form-group"><label class="form-label">Girls in Class 2 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c2_girls_itn" id="c2_girls_itn" min="0" placeholder="0" required data-class="2" data-gender="girls" data-max-field="c2_girls"><div class="field-error" id="error_c2_girls_itn">Cannot exceed number of girls in Class 2</div></div>
                                 </div>
                             </div>
 
-                            <!-- CLASS 3 -->
                             <div class="class-block">
-                                <div class="class-header">
-                                    <svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-                                    </svg>
-                                    CLASS 3
-                                </div>
+                                <div class="class-header"><svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> CLASS 3</div>
                                 <div class="teacher-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Name <span class="required">*</span></label>
-                                        <input type="text" class="form-input name-field" name="c3_teacher_name" id="c3_teacher_name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Phone <span class="required">*</span></label>
-                                        <input type="tel" class="form-input phone-field" name="c3_teacher_phone" id="c3_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits">
-                                        <div class="field-error" id="error_c3_teacher_phone">Enter 9-digit number</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Teacher Name <span class="required">*</span></label><input type="text" class="form-input name-field" name="c3_teacher_name" id="c3_teacher_name" required></div>
+                                    <div class="form-group"><label class="form-label">Teacher Phone <span class="required">*</span></label><input type="tel" class="form-input phone-field" name="c3_teacher_phone" id="c3_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits"><div class="field-error" id="error_c3_teacher_phone">Enter 9-digit number</div></div>
                                 </div>
                                 <div class="class-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Boys in Class 3 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c3_boys" id="c3_boys" min="0" placeholder="0" required data-class="3" data-gender="boys">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Boys in Class 3 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c3_boys_itn" id="c3_boys_itn" min="0" placeholder="0" required data-class="3" data-gender="boys" data-max-field="c3_boys">
-                                        <div class="field-error" id="error_c3_boys_itn">Cannot exceed number of boys in Class 3</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Girls in Class 3 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c3_girls" id="c3_girls" min="0" placeholder="0" required data-class="3" data-gender="girls">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Girls in Class 3 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c3_girls_itn" id="c3_girls_itn" min="0" placeholder="0" required data-class="3" data-gender="girls" data-max-field="c3_girls">
-                                        <div class="field-error" id="error_c3_girls_itn">Cannot exceed number of girls in Class 3</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Number of Boys in Class 3 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c3_boys" id="c3_boys" min="0" placeholder="0" required data-class="3" data-gender="boys"></div>
+                                    <div class="form-group"><label class="form-label">Boys in Class 3 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c3_boys_itn" id="c3_boys_itn" min="0" placeholder="0" required data-class="3" data-gender="boys" data-max-field="c3_boys"><div class="field-error" id="error_c3_boys_itn">Cannot exceed number of boys in Class 3</div></div>
+                                    <div class="form-group"><label class="form-label">Number of Girls in Class 3 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c3_girls" id="c3_girls" min="0" placeholder="0" required data-class="3" data-gender="girls"></div>
+                                    <div class="form-group"><label class="form-label">Girls in Class 3 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c3_girls_itn" id="c3_girls_itn" min="0" placeholder="0" required data-class="3" data-gender="girls" data-max-field="c3_girls"><div class="field-error" id="error_c3_girls_itn">Cannot exceed number of girls in Class 3</div></div>
                                 </div>
                             </div>
 
-                            <!-- CLASS 4 -->
                             <div class="class-block">
-                                <div class="class-header">
-                                    <svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-                                    </svg>
-                                    CLASS 4
-                                </div>
+                                <div class="class-header"><svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> CLASS 4</div>
                                 <div class="teacher-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Name <span class="required">*</span></label>
-                                        <input type="text" class="form-input name-field" name="c4_teacher_name" id="c4_teacher_name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Phone <span class="required">*</span></label>
-                                        <input type="tel" class="form-input phone-field" name="c4_teacher_phone" id="c4_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits">
-                                        <div class="field-error" id="error_c4_teacher_phone">Enter 9-digit number</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Teacher Name <span class="required">*</span></label><input type="text" class="form-input name-field" name="c4_teacher_name" id="c4_teacher_name" required></div>
+                                    <div class="form-group"><label class="form-label">Teacher Phone <span class="required">*</span></label><input type="tel" class="form-input phone-field" name="c4_teacher_phone" id="c4_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits"><div class="field-error" id="error_c4_teacher_phone">Enter 9-digit number</div></div>
                                 </div>
                                 <div class="class-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Boys in Class 4 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c4_boys" id="c4_boys" min="0" placeholder="0" required data-class="4" data-gender="boys">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Boys in Class 4 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c4_boys_itn" id="c4_boys_itn" min="0" placeholder="0" required data-class="4" data-gender="boys" data-max-field="c4_boys">
-                                        <div class="field-error" id="error_c4_boys_itn">Cannot exceed number of boys in Class 4</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Girls in Class 4 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c4_girls" id="c4_girls" min="0" placeholder="0" required data-class="4" data-gender="girls">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Girls in Class 4 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c4_girls_itn" id="c4_girls_itn" min="0" placeholder="0" required data-class="4" data-gender="girls" data-max-field="c4_girls">
-                                        <div class="field-error" id="error_c4_girls_itn">Cannot exceed number of girls in Class 4</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Number of Boys in Class 4 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c4_boys" id="c4_boys" min="0" placeholder="0" required data-class="4" data-gender="boys"></div>
+                                    <div class="form-group"><label class="form-label">Boys in Class 4 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c4_boys_itn" id="c4_boys_itn" min="0" placeholder="0" required data-class="4" data-gender="boys" data-max-field="c4_boys"><div class="field-error" id="error_c4_boys_itn">Cannot exceed number of boys in Class 4</div></div>
+                                    <div class="form-group"><label class="form-label">Number of Girls in Class 4 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c4_girls" id="c4_girls" min="0" placeholder="0" required data-class="4" data-gender="girls"></div>
+                                    <div class="form-group"><label class="form-label">Girls in Class 4 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c4_girls_itn" id="c4_girls_itn" min="0" placeholder="0" required data-class="4" data-gender="girls" data-max-field="c4_girls"><div class="field-error" id="error_c4_girls_itn">Cannot exceed number of girls in Class 4</div></div>
                                 </div>
                             </div>
 
-                            <!-- CLASS 5 -->
                             <div class="class-block">
-                                <div class="class-header">
-                                    <svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
-                                    </svg>
-                                    CLASS 5
-                                </div>
+                                <div class="class-header"><svg class="class-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> CLASS 5</div>
                                 <div class="teacher-row">
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Name <span class="required">*</span></label>
-                                        <input type="text" class="form-input name-field" name="c5_teacher_name" id="c5_teacher_name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Teacher Phone <span class="required">*</span></label>
-                                        <input type="tel" class="form-input phone-field" name="c5_teacher_phone" id="c5_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits">
-                                        <div class="field-error" id="error_c5_teacher_phone">Enter 9-digit number</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Teacher Name <span class="required">*</span></label><input type="text" class="form-input name-field" name="c5_teacher_name" id="c5_teacher_name" required></div>
+                                    <div class="form-group"><label class="form-label">Teacher Phone <span class="required">*</span></label><input type="tel" class="form-input phone-field" name="c5_teacher_phone" id="c5_teacher_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits"><div class="field-error" id="error_c5_teacher_phone">Enter 9-digit number</div></div>
                                 </div>
                                 <div class="class-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Boys in Class 5 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c5_boys" id="c5_boys" min="0" placeholder="0" required data-class="5" data-gender="boys">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Boys in Class 5 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c5_boys_itn" id="c5_boys_itn" min="0" placeholder="0" required data-class="5" data-gender="boys" data-max-field="c5_boys">
-                                        <div class="field-error" id="error_c5_boys_itn">Cannot exceed number of boys in Class 5</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Number of Girls in Class 5 <span class="required">*</span></label>
-                                        <input type="number" class="form-input enrollment-field" name="c5_girls" id="c5_girls" min="0" placeholder="0" required data-class="5" data-gender="girls">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Girls in Class 5 that Received ITNs <span class="required">*</span></label>
-                                        <input type="number" class="form-input itn-field" name="c5_girls_itn" id="c5_girls_itn" min="0" placeholder="0" required data-class="5" data-gender="girls" data-max-field="c5_girls">
-                                        <div class="field-error" id="error_c5_girls_itn">Cannot exceed number of girls in Class 5</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Number of Boys in Class 5 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c5_boys" id="c5_boys" min="0" placeholder="0" required data-class="5" data-gender="boys"></div>
+                                    <div class="form-group"><label class="form-label">Boys in Class 5 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c5_boys_itn" id="c5_boys_itn" min="0" placeholder="0" required data-class="5" data-gender="boys" data-max-field="c5_boys"><div class="field-error" id="error_c5_boys_itn">Cannot exceed number of boys in Class 5</div></div>
+                                    <div class="form-group"><label class="form-label">Number of Girls in Class 5 <span class="required">*</span></label><input type="number" class="form-input enrollment-field" name="c5_girls" id="c5_girls" min="0" placeholder="0" required data-class="5" data-gender="girls"></div>
+                                    <div class="form-group"><label class="form-label">Girls in Class 5 that Received ITNs <span class="required">*</span></label><input type="number" class="form-input itn-field" name="c5_girls_itn" id="c5_girls_itn" min="0" placeholder="0" required data-class="5" data-gender="girls" data-max-field="c5_girls"><div class="field-error" id="error_c5_girls_itn">Cannot exceed number of girls in Class 5</div></div>
                                 </div>
                             </div>
 
                             <div class="navigation-buttons">
-                                <button type="button" class="btn-nav btn-back" onclick="previousSection()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-                                    BACK
-                                </button>
-                                <button type="button" class="btn-nav btn-draft" onclick="showDraftNameModal()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                                    SAVE
-                                </button>
-                                <button type="button" class="btn-nav btn-next" onclick="nextSection()">
-                                    NEXT
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-                                </button>
+                                <button type="button" class="btn-nav btn-back" onclick="previousSection()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> BACK</button>
+                                <button type="button" class="btn-nav btn-draft" onclick="showDraftNameModal()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> SAVE</button>
+                                <button type="button" class="btn-nav btn-next" onclick="nextSection()">NEXT <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
                             </div>
                         </div>
 
                         <!-- SECTION 4: SUMMARY DASHBOARD -->
                         <div class="form-section" data-section="4">
-                            <div class="section-header">
-                                <div class="section-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M18 20V10M12 20V4M6 20v-6"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h2 class="section-title">SECTION D: SUMMARY DASHBOARD</h2>
-                                    <p class="section-description">Auto-calculated totals, proportions, and coverage statistics</p>
-                                </div>
-                            </div>
+                            <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div><h2 class="section-title">SECTION D: SUMMARY DASHBOARD</h2><p class="section-description">Auto-calculated totals, proportions, and coverage statistics</p></div></div>
+                            <div class="summary-note"><svg class="note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> All values below are calculated automatically from the data you entered.</div>
 
-                            <div class="summary-note">
-                                <svg class="note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 20V10M12 20V4M6 20v-6"/>
-                                </svg>
-                                All values below are calculated automatically from the data you entered.
-                            </div>
-
-                            <!-- ENROLLMENT TOTALS -->
-                            <div class="dashboard-block">
-                                <div class="dashboard-header">
-                                    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                                    </svg>
-                                    TOTAL ENROLLMENT
-                                </div>
+                            <div class="dashboard-block"><div class="dashboard-header"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> TOTAL ENROLLMENT</div>
                                 <div class="dashboard-cards">
-                                    <div class="dash-card blue">
-                                        <div class="dash-label">Total Boys in School</div>
-                                        <div class="dash-value" id="sum_total_boys">0</div>
-                                        <input type="hidden" name="total_boys" id="total_boys" value="0">
-                                    </div>
-                                    <div class="dash-card pink">
-                                        <div class="dash-label">Total Girls in School</div>
-                                        <div class="dash-value" id="sum_total_girls">0</div>
-                                        <input type="hidden" name="total_girls" id="total_girls" value="0">
-                                    </div>
-                                    <div class="dash-card green">
-                                        <div class="dash-label">Total Pupils in School</div>
-                                        <div class="dash-value" id="sum_total_pupils">0</div>
-                                        <input type="hidden" name="total_pupils" id="total_pupils" value="0">
-                                    </div>
+                                    <div class="dash-card blue"><div class="dash-label">Total Boys in School</div><div class="dash-value" id="sum_total_boys">0</div><input type="hidden" name="total_boys" id="total_boys" value="0"></div>
+                                    <div class="dash-card pink"><div class="dash-label">Total Girls in School</div><div class="dash-value" id="sum_total_girls">0</div><input type="hidden" name="total_girls" id="total_girls" value="0"></div>
+                                    <div class="dash-card green"><div class="dash-label">Total Pupils in School</div><div class="dash-value" id="sum_total_pupils">0</div><input type="hidden" name="total_pupils" id="total_pupils" value="0"></div>
                                 </div>
                             </div>
 
-                            <!-- ITN DISTRIBUTION TOTALS -->
-                            <div class="dashboard-block">
-                                <div class="dashboard-header">
-                                    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <path d="M2 4l3 12h14l3-12H2zM3 16l-1 4h20l-1-4"/>
-                                    </svg>
-                                    TOTAL ITNs DISTRIBUTED
-                                </div>
+                            <div class="dashboard-block"><div class="dashboard-header"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4l3 12h14l3-12H2zM3 16l-1 4h20l-1-4"/></svg> TOTAL ITNs DISTRIBUTED</div>
                                 <div class="dashboard-cards">
-                                    <div class="dash-card blue">
-                                        <div class="dash-label">Total Boys Received ITNs</div>
-                                        <div class="dash-value" id="sum_boys_itn">0</div>
-                                        <input type="hidden" name="total_boys_itn" id="total_boys_itn" value="0">
-                                    </div>
-                                    <div class="dash-card pink">
-                                        <div class="dash-label">Total Girls Received ITNs</div>
-                                        <div class="dash-value" id="sum_girls_itn">0</div>
-                                        <input type="hidden" name="total_girls_itn" id="total_girls_itn" value="0">
-                                    </div>
-                                    <div class="dash-card green">
-                                        <div class="dash-label">Total Pupils Received ITNs</div>
-                                        <div class="dash-value" id="sum_total_itn">0</div>
-                                        <input type="hidden" name="total_itn" id="total_itn" value="0">
-                                    </div>
-                                    <div class="dash-card large orange">
-                                        <div class="dash-label">ITNs Remaining (Received - Distributed)</div>
-                                        <div class="dash-value" id="itns_remaining">0</div>
-                                        <input type="hidden" name="itns_remaining" id="itns_remaining_val" value="0">
-                                        <div class="remaining-status" id="remaining_status"></div>
-                                    </div>
+                                    <div class="dash-card blue"><div class="dash-label">Total Boys Received ITNs</div><div class="dash-value" id="sum_boys_itn">0</div><input type="hidden" name="total_boys_itn" id="total_boys_itn" value="0"></div>
+                                    <div class="dash-card pink"><div class="dash-label">Total Girls Received ITNs</div><div class="dash-value" id="sum_girls_itn">0</div><input type="hidden" name="total_girls_itn" id="total_girls_itn" value="0"></div>
+                                    <div class="dash-card green"><div class="dash-label">Total Pupils Received ITNs</div><div class="dash-value" id="sum_total_itn">0</div><input type="hidden" name="total_itn" id="total_itn" value="0"></div>
+                                    <div class="dash-card large orange"><div class="dash-label">ITNs Remaining (Received - Distributed)</div><div class="dash-value" id="itns_remaining">0</div><input type="hidden" name="itns_remaining" id="itns_remaining_val" value="0"><div class="remaining-status" id="remaining_status"></div></div>
                                 </div>
                             </div>
 
-                            <!-- GENDER PROPORTIONS -->
-                            <div class="dashboard-block">
-                                <div class="dashboard-header">
-                                    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
-                                    </svg>
-                                    PROPORTION OF BOYS & GIRLS IN SCHOOL
-                                </div>
+                            <div class="dashboard-block"><div class="dashboard-header"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg> PROPORTION OF BOYS & GIRLS IN SCHOOL</div>
                                 <div class="dashboard-cards">
-                                    <div class="dash-card blue">
-                                        <div class="dash-label">Proportion of Boys</div>
-                                        <div class="dash-value" id="prop_boys">0%</div>
-                                        <input type="hidden" name="prop_boys" id="prop_boys_val" value="0">
-                                    </div>
-                                    <div class="dash-card pink">
-                                        <div class="dash-label">Proportion of Girls</div>
-                                        <div class="dash-value" id="prop_girls">0%</div>
-                                        <input type="hidden" name="prop_girls" id="prop_girls_val" value="0">
-                                    </div>
+                                    <div class="dash-card blue"><div class="dash-label">Proportion of Boys</div><div class="dash-value" id="prop_boys">0%</div><input type="hidden" name="prop_boys" id="prop_boys_val" value="0"></div>
+                                    <div class="dash-card pink"><div class="dash-label">Proportion of Girls</div><div class="dash-value" id="prop_girls">0%</div><input type="hidden" name="prop_girls" id="prop_girls_val" value="0"></div>
                                 </div>
-                                <div class="gender-bar-container">
-                                    <div class="gender-bar">
-                                        <div class="gender-bar-boys" id="bar_boys"></div>
-                                        <div class="gender-bar-girls" id="bar_girls"></div>
-                                    </div>
-                                    <div class="gender-bar-legend"><span class="legend-boys">Boys</span><span class="legend-girls">Girls</span></div>
-                                </div>
+                                <div class="gender-bar-container"><div class="gender-bar"><div class="gender-bar-boys" id="bar_boys"></div><div class="gender-bar-girls" id="bar_girls"></div></div><div class="gender-bar-legend"><span class="legend-boys">Boys</span><span class="legend-girls">Girls</span></div></div>
                             </div>
 
-                            <!-- ITN COVERAGE -->
-                            <div class="dashboard-block">
-                                <div class="dashboard-header">
-                                    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
-                                    </svg>
-                                    ITN COVERAGE RATES
-                                </div>
+                            <div class="dashboard-block"><div class="dashboard-header"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> ITN COVERAGE RATES</div>
                                 <div class="dashboard-cards">
-                                    <div class="dash-card blue">
-                                        <div class="dash-label">Boys ITN Coverage</div>
-                                        <div class="dash-value" id="cov_boys">0%</div>
-                                        <input type="hidden" name="coverage_boys" id="coverage_boys" value="0">
-                                    </div>
-                                    <div class="dash-card pink">
-                                        <div class="dash-label">Girls ITN Coverage</div>
-                                        <div class="dash-value" id="cov_girls">0%</div>
-                                        <input type="hidden" name="coverage_girls" id="coverage_girls" value="0">
-                                    </div>
-                                    <div class="dash-card green large">
-                                        <div class="dash-label">Overall ITN Coverage</div>
-                                        <div class="dash-value big" id="cov_total">0%</div>
-                                        <input type="hidden" name="coverage_total" id="coverage_total" value="0">
-                                    </div>
+                                    <div class="dash-card blue"><div class="dash-label">Boys ITN Coverage</div><div class="dash-value" id="cov_boys">0%</div><input type="hidden" name="coverage_boys" id="coverage_boys" value="0"></div>
+                                    <div class="dash-card pink"><div class="dash-label">Girls ITN Coverage</div><div class="dash-value" id="cov_girls">0%</div><input type="hidden" name="coverage_girls" id="coverage_girls" value="0"></div>
+                                    <div class="dash-card green large"><div class="dash-label">Overall ITN Coverage</div><div class="dash-value big" id="cov_total">0%</div><input type="hidden" name="coverage_total" id="coverage_total" value="0"></div>
                                 </div>
                             </div>
 
-                            <!-- CLASS BREAKDOWN TABLE -->
-                            <div class="dashboard-block">
-                                <div class="dashboard-header">
-                                    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M3 3h18v18H3zM3 9h18M9 21V9"/>
-                                    </svg>
-                                    CLASS-BY-CLASS BREAKDOWN
-                                </div>
-                                <div class="table-wrapper">
-                                    <table class="breakdown-table">
-                                        <thead>
-                                            <tr><th>CLASS</th><th>BOYS</th><th>BOYS ITN</th><th>GIRLS</th><th>GIRLS ITN</th><th>TOTAL</th><th>ITN</th><th>COV %</th></tr>
-                                        </thead>
-                                        <tbody id="breakdownTableBody">
-                                            <tr><td>Class 1</td><td id="t1_b">0</td><td id="t1_bi">0</td><td id="t1_g">0</td><td id="t1_gi">0</td><td id="t1_t">0</td><td id="t1_ti">0</td><td id="t1_c">0%</td></tr>
-                                            <tr><td>Class 2</td><td id="t2_b">0</td><td id="t2_bi">0</td><td id="t2_g">0</td><td id="t2_gi">0</td><td id="t2_t">0</td><td id="t2_ti">0</td><td id="t2_c">0%</td></tr>
-                                            <tr><td>Class 3</td><td id="t3_b">0</td><td id="t3_bi">0</td><td id="t3_g">0</td><td id="t3_gi">0</td><td id="t3_t">0</td><td id="t3_ti">0</td><td id="t3_c">0%</td></tr>
-                                            <tr><td>Class 4</td><td id="t4_b">0</td><td id="t4_bi">0</td><td id="t4_g">0</td><td id="t4_gi">0</td><td id="t4_t">0</td><td id="t4_ti">0</td><td id="t4_c">0%</td></tr>
-                                            <tr><td>Class 5</td><td id="t5_b">0</td><td id="t5_bi">0</td><td id="t5_g">0</td><td id="t5_gi">0</td><td id="t5_t">0</td><td id="t5_ti">0</td><td id="t5_c">0%</td></tr>
-                                            <tr class="total-row"><td><strong>TOTAL</strong></td><td id="tt_b">0</td><td id="tt_bi">0</td><td id="tt_g">0</td><td id="tt_gi">0</td><td id="tt_t">0</td><td id="tt_ti">0</td><td id="tt_c">0%</td></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                            <div class="dashboard-block"><div class="dashboard-header"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg> CLASS-BY-CLASS BREAKDOWN</div>
+                                <div class="table-wrapper"><table class="breakdown-table"><thead><tr><th>CLASS</th><th>BOYS</th><th>BOYS ITN</th><th>GIRLS</th><th>GIRLS ITN</th><th>TOTAL</th><th>ITN</th><th>COV %</th></tr></thead><tbody id="breakdownTableBody"><tr><td>Class 1</td><td id="t1_b">0</td><td id="t1_bi">0</td><td id="t1_g">0</td><td id="t1_gi">0</td><td id="t1_t">0</td><td id="t1_ti">0</td><td id="t1_c">0%</td></tr><tr><td>Class 2</td><td id="t2_b">0</td><td id="t2_bi">0</td><td id="t2_g">0</td><td id="t2_gi">0</td><td id="t2_t">0</td><td id="t2_ti">0</td><td id="t2_c">0%</td></tr><tr><td>Class 3</td><td id="t3_b">0</td><td id="t3_bi">0</td><td id="t3_g">0</td><td id="t3_gi">0</td><td id="t3_t">0</td><td id="t3_ti">0</td><td id="t3_c">0%</td></tr><tr><td>Class 4</td><td id="t4_b">0</td><td id="t4_bi">0</td><td id="t4_g">0</td><td id="t4_gi">0</td><td id="t4_t">0</td><td id="t4_ti">0</td><td id="t4_c">0%</td></tr><tr><td>Class 5</td><td id="t5_b">0</td><td id="t5_bi">0</td><td id="t5_g">0</td><td id="t5_gi">0</td><td id="t5_t">0</td><td id="t5_ti">0</td><td id="t5_c">0%</td></tr><tr class="total-row"><td><strong>TOTAL</strong></td><td id="tt_b">0</td><td id="tt_bi">0</td><td id="tt_g">0</td><td id="tt_gi">0</td><td id="tt_t">0</td><td id="tt_ti">0</td><td id="tt_c">0%</td></tr></tbody></table></div></div>
 
-                            <!-- MINI CHARTS -->
-                            <div class="dashboard-block">
-                                <div class="dashboard-header">
-                                    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>
-                                    </svg>
-                                    VISUAL SUMMARY
-                                </div>
-                                <div class="charts-grid">
-                                    <div class="chart-box">
-                                        <div class="chart-title">Enrollment by Gender</div>
-                                        <canvas id="chartEnrollment"></canvas>
-                                    </div>
-                                    <div class="chart-box">
-                                        <div class="chart-title">ITN Distribution by Gender</div>
-                                        <canvas id="chartITN"></canvas>
-                                    </div>
-                                    <div class="chart-box">
-                                        <div class="chart-title">Coverage by Class</div>
-                                        <canvas id="chartCoverage"></canvas>
-                                    </div>
-                                </div>
+                            <div class="dashboard-block"><div class="dashboard-header"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg> VISUAL SUMMARY</div>
+                                <div class="charts-grid"><div class="chart-box"><div class="chart-title">Enrollment by Gender</div><canvas id="chartEnrollment"></canvas></div><div class="chart-box"><div class="chart-title">ITN Distribution by Gender</div><canvas id="chartITN"></canvas></div><div class="chart-box"><div class="chart-title">Coverage by Class</div><canvas id="chartCoverage"></canvas></div></div>
                             </div>
 
                             <div class="navigation-buttons">
-                                <button type="button" class="btn-nav btn-back" onclick="previousSection()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-                                    BACK
-                                </button>
-                                <button type="button" class="btn-nav btn-draft" onclick="showDraftNameModal()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                                    SAVE
-                                </button>
-                                <button type="button" class="btn-nav btn-next" onclick="nextSection()">
-                                    NEXT
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-                                </button>
+                                <button type="button" class="btn-nav btn-back" onclick="previousSection()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> BACK</button>
+                                <button type="button" class="btn-nav btn-draft" onclick="showDraftNameModal()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> SAVE</button>
+                                <button type="button" class="btn-nav btn-next" onclick="nextSection()">NEXT <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
                             </div>
                         </div>
 
                         <!-- SECTION 5: TEAM MEMBERS & SUBMISSION -->
                         <div class="form-section" data-section="5">
-                            <div class="section-header">
-                                <div class="section-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h2 class="section-title">SECTION E: TEAM MEMBERS & SUBMISSION</h2>
-                                    <p class="section-description">Survey team details, GPS location, and signatures</p>
-                                </div>
+                            <div class="section-header"><div class="section-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><h2 class="section-title">SECTION E: TEAM MEMBERS & SUBMISSION</h2><p class="section-description">Survey team details, GPS location, and signatures</p></div></div>
+
+                            <div class="form-group"><label class="form-label">SURVEY DATE <span class="required">*</span></label><input type="date" class="form-input" name="survey_date" id="survey_date" required><div class="field-error" id="error_survey_date">This field is required</div></div>
+
+                            <div class="form-group"><label class="form-label">GPS LOCATION</label>
+                                <div class="gps-container"><div class="gps-status"><div class="gps-icon" id="gps_icon"></div><div><div class="gps-info" id="gps_status">Capturing GPS...</div><div class="gps-coords" id="gps_coords"></div></div></div><button type="button" class="gps-btn" onclick="captureGPS()"><svg class="retry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> RETRY</button></div>
+                                <input type="hidden" name="gps_lat" id="gps_lat"><input type="hidden" name="gps_lng" id="gps_lng"><input type="hidden" name="gps_acc" id="gps_acc">
                             </div>
 
-                            <div class="form-group">
-                                <label class="form-label">SURVEY DATE <span class="required">*</span></label>
-                                <input type="date" class="form-input" name="survey_date" id="survey_date" required>
-                                <div class="field-error" id="error_survey_date">This field is required</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">GPS LOCATION</label>
-                                <div class="gps-container">
-                                    <div class="gps-status">
-                                        <div class="gps-icon" id="gps_icon"></div>
-                                        <div>
-                                            <div class="gps-info" id="gps_status">Capturing GPS...</div>
-                                            <div class="gps-coords" id="gps_coords"></div>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="gps-btn" onclick="captureGPS()">
-                                        <svg class="retry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
-                                        </svg>
-                                        RETRY
-                                    </button>
-                                </div>
-                                <input type="hidden" name="gps_lat" id="gps_lat">
-                                <input type="hidden" name="gps_lng" id="gps_lng">
-                                <input type="hidden" name="gps_acc" id="gps_acc">
-                            </div>
-
-                            <!-- TEAM MEMBER 1 (Required) -->
                             <div class="team-member-block required-member">
-                                <div class="team-member-header">
-                                    <svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                                    </svg>
-                                    TEAM MEMBER 1 <span class="required">*</span> (Required)
-                                </div>
+                                <div class="team-member-header"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> TEAM MEMBER 1 <span class="required">*</span> (Required)</div>
                                 <div class="team-member-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Full Name <span class="required">*</span></label>
-                                        <input type="text" class="form-input name-field" name="team1_name" id="team1_name" required>
-                                        <div class="field-error" id="error_team1_name">Name must contain only letters</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Phone Number <span class="required">*</span></label>
-                                        <input type="tel" class="form-input phone-field" name="team1_phone" id="team1_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits">
-                                        <div class="field-error" id="error_team1_phone">Enter valid 9-digit number</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Full Name <span class="required">*</span></label><input type="text" class="form-input name-field" name="team1_name" id="team1_name" required><div class="field-error" id="error_team1_name">Name must contain only letters</div></div>
+                                    <div class="form-group"><label class="form-label">Phone Number <span class="required">*</span></label><input type="tel" class="form-input phone-field" name="team1_phone" id="team1_phone" required pattern="[0-9]{9}" maxlength="9" placeholder="9 digits"><div class="field-error" id="error_team1_phone">Enter valid 9-digit number</div></div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Signature <span class="required">*</span></label>
-                                    <div class="signature-box">
-                                        <canvas id="sig1Canvas"></canvas>
-                                        <button type="button" class="sig-clear-btn" onclick="clearTeamSignature(1)">
-                                            <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
-                                            </svg>
-                                            Clear
-                                        </button>
-                                    </div>
+                                <div class="form-group"><label class="form-label">Signature <span class="required">*</span></label>
+                                    <div class="signature-box"><canvas id="sig1Canvas"></canvas><button type="button" class="sig-clear-btn" onclick="clearTeamSignature(1)"><svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Clear</button></div>
                                     <input type="hidden" name="team1_signature" id="team1_signature" required>
                                     <div class="field-error" id="error_team1_signature">Signature is required</div>
                                 </div>
                             </div>
 
-                            <!-- TEAM MEMBER 2 (Optional) -->
                             <div class="team-member-block optional-member">
-                                <div class="team-member-header optional">
-                                    <svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                                    </svg>
-                                    TEAM MEMBER 2 (Optional)
-                                </div>
+                                <div class="team-member-header optional"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> TEAM MEMBER 2 (Optional)</div>
                                 <div class="team-member-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Full Name</label>
-                                        <input type="text" class="form-input name-field" name="team2_name" id="team2_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-input phone-field" name="team2_phone" id="team2_phone" pattern="[0-9]{9}" maxlength="9" placeholder="9 digits">
-                                        <div class="field-error" id="error_team2_phone">Enter valid 9-digit number</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Full Name </label><input type="text" class="form-input name-field" name="team2_name" id="team2_name" ><div class="field-error" id="error_team2_name">Name must contain only letters</div></div>
+                                    <div class="form-group"><label class="form-label">Phone Number </label><input type="tel" class="form-input phone-field" name="team2_phone" id="team2_phone"  pattern="[0-9]{9}" maxlength="9" placeholder="9 digits"><div class="field-error" id="error_team2_phone">Enter valid 9-digit number</div></div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Signature</label>
-                                    <div class="signature-box">
-                                        <canvas id="sig2Canvas"></canvas>
-                                        <button type="button" class="sig-clear-btn" onclick="clearTeamSignature(2)">
-                                            <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
-                                            </svg>
-                                            Clear
-                                        </button>
-                                    </div>
-                                    <input type="hidden" name="team2_signature" id="team2_signature">
+                                <div class="form-group"><label class="form-label">Signature </label>
+                                    <div class="signature-box"><canvas id="sig2Canvas"></canvas><button type="button" class="sig-clear-btn" onclick="clearTeamSignature(2)"><svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Clear</button></div>
+                                    <input type="hidden" name="team2_signature" id="team2_signature" >
+                                    <div class="field-error" id="error_team2_signature">Signature is required</div>
                                 </div>
                             </div>
 
-                            <!-- TEAM MEMBER 3 (Optional) -->
                             <div class="team-member-block optional-member">
-                                <div class="team-member-header optional">
-                                    <svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                                    </svg>
-                                    TEAM MEMBER 3 (Optional)
-                                </div>
+                                <div class="team-member-header optional"><svg class="team-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> TEAM MEMBER 3 (Optional)</div>
                                 <div class="team-member-grid">
-                                    <div class="form-group">
-                                        <label class="form-label">Full Name</label>
-                                        <input type="text" class="form-input name-field" name="team3_name" id="team3_name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-input phone-field" name="team3_phone" id="team3_phone" pattern="[0-9]{9}" maxlength="9" placeholder="9 digits">
-                                        <div class="field-error" id="error_team3_phone">Enter valid 9-digit number</div>
-                                    </div>
+                                    <div class="form-group"><label class="form-label">Full Name </label><input type="text" class="form-input name-field" name="team3_name" id="team3_name" ><div class="field-error" id="error_team3_name">Name must contain only letters</div></div>
+                                    <div class="form-group"><label class="form-label">Phone Number </label><input type="tel" class="form-input phone-field" name="team3_phone" id="team3_phone"  pattern="[0-9]{9}" maxlength="9" placeholder="9 digits"><div class="field-error" id="error_team3_phone">Enter valid 9-digit number</div></div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Signature</label>
-                                    <div class="signature-box">
-                                        <canvas id="sig3Canvas"></canvas>
-                                        <button type="button" class="sig-clear-btn" onclick="clearTeamSignature(3)">
-                                            <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
-                                            </svg>
-                                            Clear
-                                        </button>
-                                    </div>
-                                    <input type="hidden" name="team3_signature" id="team3_signature">
+                                <div class="form-group"><label class="form-label">Signature </label>
+                                    <div class="signature-box"><canvas id="sig3Canvas"></canvas><button type="button" class="sig-clear-btn" onclick="clearTeamSignature(3)"><svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Clear</button></div>
+                                    <input type="hidden" name="team3_signature" id="team3_signature" >
+                                    <div class="field-error" id="error_team3_signature">Signature is required</div>
                                 </div>
                             </div>
 
                             <div class="navigation-buttons">
-                                <button type="button" class="btn-nav btn-back" onclick="previousSection()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-                                    BACK
-                                </button>
-                                <button type="button" class="btn-nav btn-draft" onclick="showDraftNameModal()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                                    SAVE
-                                </button>
-                                <button type="button" class="btn-nav btn-finalize" id="finalizeBtn" onclick="finalizeForm()">
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                                    FINALIZE
-                                </button>
-                                <button type="submit" class="btn-nav btn-submit" id="submitBtn" disabled>
-                                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                                    SUBMIT
-                                </button>
+                                <button type="button" class="btn-nav btn-back" onclick="previousSection()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> BACK</button>
+                                <button type="button" class="btn-nav btn-draft" onclick="showDraftNameModal()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> SAVE</button>
+                                <button type="button" class="btn-nav btn-finalize" id="finalizeBtn" onclick="finalizeForm()"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> FINALIZE</button>
+                                <button type="submit" class="btn-nav btn-submit" id="submitBtn" disabled><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> SUBMIT</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -1046,60 +435,23 @@
             <div class="page-footer">
                 <p class="footer-main">School-Based Distribution of ITNs - Sierra Leone</p>
                 <div class="footer-partners">Ministry of Health | NMCP | PMI Evolve</div>
-                <p class="footer-copy">© 2025 Informatics Consultancy Firm-Sierra Leone (ICF-SL)</p>
+                <p class="footer-copy">&copy; 2025 Informatics Consultancy Firm-Sierra Leone (ICF-SL)</p>
             </div>
         </div>
     </div>
 
     <!-- MODALS -->
     <div class="modal-overlay" id="draftsModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-title">
-                    <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    SAVED DRAFTS
-                </span>
-                <button class="modal-close" onclick="closeDraftsModal()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
-            </div>
-            <div class="modal-body" id="draftsModalBody"></div>
-        </div>
+        <div class="modal-content"><div class="modal-header"><span class="modal-title"><svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> SAVED DRAFTS</span><button class="modal-close" onclick="closeDraftsModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="modal-body" id="draftsModalBody"></div></div>
     </div>
 
     <div class="modal-overlay" id="draftNameModal">
-        <div class="modal-content small">
-            <div class="modal-header yellow">
-                <span class="modal-title">
-                    <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                    SAVE DRAFT
-                </span>
-            </div>
-            <div class="modal-body">
-                <label class="form-label">DRAFT NAME (AUTO-GENERATED):</label>
-                <input type="text" class="form-input draft-name-readonly" id="draftNameInput" readonly>
-                <div class="draft-name-hint">Name is auto-generated from location selections</div>
-                <div class="modal-buttons">
-                    <button class="modal-btn cancel" onclick="cancelDraftName()">CANCEL</button>
-                    <button class="modal-btn save" onclick="confirmSaveDraft()">SAVE</button>
-                </div>
-            </div>
-        </div>
+        <div class="modal-content small"><div class="modal-header yellow"><span class="modal-title"><svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> SAVE DRAFT</span></div>
+        <div class="modal-body"><label class="form-label">DRAFT NAME (AUTO-GENERATED):</label><input type="text" class="form-input draft-name-readonly" id="draftNameInput" readonly><div class="draft-name-hint">Name is auto-generated from location selections</div><div class="modal-buttons"><button class="modal-btn cancel" onclick="cancelDraftName()">CANCEL</button><button class="modal-btn save" onclick="confirmSaveDraft()">SAVE</button></div></div></div>
     </div>
 
     <div class="modal-overlay" id="analysisModal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <span class="modal-title">
-                    <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-                    ITN DISTRIBUTION ANALYSIS
-                </span>
-                <button class="modal-close" onclick="closeAnalysisModal()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                </button>
-            </div>
-            <div class="modal-body" id="analysisBody"></div>
-        </div>
+        <div class="modal-content large"><div class="modal-header"><span class="modal-title"><svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg> ITN DISTRIBUTION ANALYSIS</span><button class="modal-close" onclick="closeAnalysisModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="modal-body" id="analysisBody"></div></div>
     </div>
 
     <div class="notification" id="notification"><span id="notificationText"></span></div>

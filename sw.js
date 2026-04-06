@@ -7,12 +7,13 @@ const CACHE_NAME = 'sbd-2026-v5';
 const PRECACHE_URLS = [
   './',
   './index.html',
+  './itn_movement.html',
   './script_option2.js',
   './ai_agent.js',
   './cascading_data.csv',
   './manifest.json',
   './offline.html',
-  './icons/icon-maskable-512.png',
+  './icon-maskable-512.png',
 ];
 
 // CDN libraries

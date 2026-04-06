@@ -1,6 +1,107 @@
 // ============================================
-// CONFIGURATION
+// PWA INSTALL BANNER
 // ============================================
+
+window.pwaDoInstall = async function() {
+    console.log('[PWA] Install clicked, prompt:', !!deferredPrompt);
+    if (deferredPrompt) {
+        const btn = document.getElementById('installBtn');
+        if (btn) { btn.textContent = 'Installing…'; btn.disabled = true; }
+        try {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            deferredPrompt = null;
+            if (outcome === 'accepted') {
+                if (btn) { btn.textContent = '\u2713 Installed!'; btn.style.background = '#28a745'; }
+                showNotification('Installed! Open from your home screen.', 'success');
+                setTimeout(() => {
+                    const b = document.getElementById('installBanner');
+                    if (b) b.style.display = 'none';
+                }, 3000);
+            } else {
+                if (btn) { btn.textContent = 'INSTALL'; btn.disabled = false; }
+            }
+        } catch(e) {
+            console.error('[PWA]', e);
+            const btn2 = document.getElementById('installBtn');
+            if (btn2) { btn2.textContent = 'INSTALL'; btn2.disabled = false; }
+        }
+        return;
+    }
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isAndroid = /android/i.test(navigator.userAgent);
+    if (isIOS) showNotification('Tap Share (\u2191) then "Add to Home Screen"', 'info');
+    else if (isAndroid) showNotification('Tap browser menu (⋮) \u2192 "Add to Home Screen"', 'info');
+    else showNotification('Click the install icon in your browser address bar', 'info');
+};
+window.pwaCloseBanner = function() {
+    const b = document.getElementById('pwaInstallBanner');
+    if (b) b.style.bottom = '-120px';
+};
+
+function _pwaBannerShow() {
+    const b = document.getElementById('pwaInstallBanner');
+    if (b) setTimeout(() => { b.style.bottom = '16px'; }, 80);
+}
+function _pwaSuccess() {
+    showNotification('App installed! Open from home screen.', 'success');
+    const banner = document.getElementById('installBanner');
+    if (banner) banner.style.display = 'none';
+    const pb = document.getElementById('pwaInstallBanner');
+    if (pb) pb.style.bottom = '-120px';
+}
+function _pwaInjectBanner() {
+    if (document.getElementById('pwaInstallBanner')) return;
+    const b = document.createElement('div');
+    b.id = 'pwaInstallBanner';
+    b.setAttribute('style', 'position:fixed;bottom:-120px;left:50%;transform:translateX(-50%);width:calc(100% - 24px);max-width:520px;background:linear-gradient(135deg,#002952,#004080);border-radius:14px;padding:13px 14px;box-shadow:0 -2px 30px rgba(0,0,0,.4);border:1.5px solid rgba(200,153,26,.45);z-index:2147483647;transition:bottom .4s ease;box-sizing:border-box;pointer-events:all;');
+    b.innerHTML =
+        '<div style="display:flex;align-items:center;gap:11px;pointer-events:all;">' +
+          '<img src="./icons/icon-192.png" width="40" height="40" style="border-radius:9px;flex-shrink:0;" onerror="this.style.display=\x27none\x27">' +
+          '<div style="flex:1;">' +
+            '<div style="font-family:Oswald,sans-serif;font-size:13px;font-weight:700;color:#fff;">SBD 2026 — ITN Survey</div>' +
+            '<div style="font-size:11px;color:rgba(255,255,255,.72);">Install for offline use &amp; quick access</div>' +
+          '</div>' +
+          '<button id="pwaInstallBtn" onclick="window.pwaDoInstall()" style="background:#c8991a;color:#fff;border:none;border-radius:8px;padding:10px 18px;font-family:Oswald,sans-serif;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0;pointer-events:all;touch-action:manipulation;">INSTALL</button>' +
+          '<button onclick="window.pwaCloseBanner()" style="background:rgba(255,255,255,.16);color:#fff;border:none;border-radius:6px;min-width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all;touch-action:manipulation;font-size:16px;">×</button>' +
+        '</div>';
+    document.body.appendChild(b);
+}
+
+window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const btn = document.getElementById('installBtn');
+    if (btn) btn.style.background = '#28a745';
+    _pwaInjectBanner();
+    _pwaBannerShow();
+    console.log('[PWA] Install prompt ready');
+});
+window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    _pwaSuccess();
+    console.log('[PWA] Installed');
+});
+
+function setupInstallButton() {
+    const btn = document.getElementById('installBtn');
+    if (!btn) return;
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+        const b = document.getElementById('installBanner');
+        if (b) b.style.display = 'none';
+        return;
+    }
+    btn.style.display = 'inline-flex';
+    btn.setAttribute('onclick', 'window.pwaInstallClick()');
+}
+window.pwaInstallClick = window.pwaDoInstall;
+
+function showBanner()        {}
+function hideBanner()        { window.pwaCloseBanner(); }
+function showInstallSuccess(){ _pwaSuccess(); }
+function syncNavInstallBtn() {}
+function injectInstallBanner(){ _pwaInjectBanner(); }
+
 const CONFIG = {
     SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbymRy-M5v0fVLWUjw4IXYhd1oIR2ZvnP_Dzr_iGR-Th0cMIpmE2ntGeujWYH7-C6NHIzA/exec',
     SHEET_URL:  'https://docs.google.com/spreadsheets/d/1cXlYiTMzcRP1BCj9mt1JXoK_pjgWbRtDEEQUPMg2HPs/edit?usp=sharing',
@@ -160,7 +261,7 @@ function _pwaInjectBanner() {
                'overflow:hidden;display:flex;align-items:center;justify-content:center;' +
                'border:2px solid rgba(200,153,26,.4);">' +
             '<img src="./icons/icon-192.png" width="38" height="38" style="object-fit:contain;" ' +
-                 'onerror="this.parentElement.innerHTML='<span style=font-size:22px>📲</span>'">' +
+            '>' +
           '</div>' +
           '<div style="flex:1;min-width:0;">' +
             '<div style="font-family:Oswald,sans-serif;font-size:13px;font-weight:700;color:#fff;' +

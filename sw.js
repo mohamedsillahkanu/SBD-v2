@@ -1,112 +1,139 @@
-// ============================================================
-//  SBD 2026 — ITN Distribution Survey · Service Worker
-//  To force a full refresh: bump CACHE_VERSION
-// ============================================================
-const CACHE_VERSION = 'sbd-2026-v4';
+// SBD 2026 — ITN Distribution Survey · Service Worker
+// Modelled on the working SNT Tools SW pattern
 
-const APP_FILES = [
+const CACHE_NAME = 'sbd-2026-v5';
+
+// Core app files — must all exist on server
+const PRECACHE_URLS = [
+  './',
   './index.html',
   './script_option2.js',
   './ai_agent.js',
   './cascading_data1.csv',
   './manifest.json',
   './offline.html',
+  './icons/icon-72.png',
+  './icons/icon-96.png',
+  './icons/icon-128.png',
+  './icons/icon-144.png',
+  './icons/icon-152.png',
   './icons/icon-192.png',
+  './icons/icon-384.png',
   './icons/icon-512.png',
   './icons/icon-maskable-192.png',
   './icons/icon-maskable-512.png',
 ];
 
-const OPTIONAL_FILES = [
-  './ICF-SL.jpg',
-  './logo_mohs.png',
-  './logo_nmcp.png',
-  './logo_pmi.png',
-  './favicon.svg',
-];
-
-const CDN_FILES = [
-  'https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap',
+// CDN libraries
+const CDN_URLS = [
   'https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js',
   'https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js',
   'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
 ];
 
+// Never cache these
 const NEVER_CACHE = [
   'script.google.com',
   'docs.google.com',
   'api.anthropic.com',
 ];
 
-function toAbs(url) {
-  return url.startsWith('http') ? url : new URL(url, self.location.href).href;
-}
-
-async function cacheOne(cache, url) {
-  try { await cache.add(url); }
-  catch(e) { console.warn('[SW] Skipped:', url, '-', e.message); }
-}
-
-// INSTALL — never throws, skips missing files individually
+// ── INSTALL ───────────────────────────────────────────────────
 self.addEventListener('install', event => {
-  console.log('[SW] Install', CACHE_VERSION);
+  console.log('[SW] Install', CACHE_NAME);
   event.waitUntil(
-    caches.open(CACHE_VERSION).then(async cache => {
-      await Promise.all([...APP_FILES, ...CDN_FILES].map(u => cacheOne(cache, toAbs(u))));
-      await Promise.all(OPTIONAL_FILES.map(u => cacheOne(cache, toAbs(u))));
-      console.log('[SW] Cache ready');
-      return self.skipWaiting();
-    })
+    caches.open(CACHE_NAME)
+      .then(async cache => {
+        // Cache each file individually — never let one failure abort the whole install
+        const all = [...PRECACHE_URLS, ...CDN_URLS];
+        await Promise.all(
+          all.map(url => {
+            const abs = url.startsWith('http') ? url : new URL(url, self.location.href).href;
+            return cache.add(abs).catch(e =>
+              console.warn('[SW] Skipped:', url, e.message)
+            );
+          })
+        );
+        console.log('[SW] Cache ready');
+        return self.skipWaiting();
+      })
   );
 });
 
-// ACTIVATE — wipe old caches, claim all tabs
+// ── ACTIVATE ──────────────────────────────────────────────────
 self.addEventListener('activate', event => {
-  console.log('[SW] Activate', CACHE_VERSION);
+  console.log('[SW] Activate', CACHE_NAME);
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE_VERSION).map(k => caches.delete(k))))
+      .then(names => Promise.all(
+        names
+          .filter(n => n !== CACHE_NAME)
+          .map(n => { console.log('[SW] Delete old cache:', n); return caches.delete(n); })
+      ))
       .then(() => self.clients.claim())
   );
 });
 
-// FETCH — cache-first, network fallback, offline page for navigation
+// ── FETCH ─────────────────────────────────────────────────────
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
+
   const url = event.request.url;
+
+  // Skip GAS / Sheets / Claude — always network
   if (NEVER_CACHE.some(p => url.includes(p))) return;
+
+  // Allow CDN fonts and jsdelivr
+  const allowedExternal = [
+    'fonts.googleapis.com',
+    'fonts.gstatic.com',
+    'cdn.jsdelivr.net',
+  ];
+  const reqURL = new URL(url);
+  const isExternal = reqURL.origin !== self.location.origin;
+  const isAllowed  = allowedExternal.some(o => reqURL.hostname.includes(o));
+  if (isExternal && !isAllowed) return;
 
   event.respondWith(
     caches.match(event.request).then(cached => {
-      // Serve from cache immediately
       if (cached) {
-        // Background refresh
-        fetch(event.request).then(r => {
-          if (r && r.status === 200)
-            caches.open(CACHE_VERSION).then(c => c.put(event.request, r));
-        }).catch(() => {});
+        // Background-refresh same-origin files
+        if (!isExternal) {
+          fetch(event.request)
+            .then(r => { if (r && r.status === 200) caches.open(CACHE_NAME).then(c => c.put(event.request, r)); })
+            .catch(() => {});
+        }
         return cached;
       }
-      // Not cached — fetch & store
-      return fetch(event.request).then(r => {
-        if (r && r.status === 200)
-          caches.open(CACHE_VERSION).then(c => c.put(event.request, r.clone()));
-        return r;
-      }).catch(() => {
-        if (event.request.mode === 'navigate')
-          return caches.match(new URL('./offline.html', self.location.href).href);
-        return new Response('', { status: 503 });
-      });
+      // Not cached — fetch and store
+      return fetch(event.request.clone())
+        .then(response => {
+          if (!response || response.status !== 200) return response;
+          if (event.request.method === 'GET') {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(c => c.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => {
+          if (event.request.mode === 'navigate')
+            return caches.match(new URL('./offline.html', self.location.href).href);
+          return new Response('Offline', { status: 503 });
+        });
     })
   );
 });
 
+// ── MESSAGES ──────────────────────────────────────────────────
 self.addEventListener('message', event => {
   if (!event.data) return;
   if (event.data.type === 'SKIP_WAITING') self.skipWaiting();
-  if (event.data.type === 'CLEAR_CACHE')  caches.delete(CACHE_VERSION);
+  if (event.data.type === 'CLEAR_CACHE')  caches.delete(CACHE_NAME);
 });
 
+// ── BACKGROUND SYNC ───────────────────────────────────────────
 self.addEventListener('sync', event => {
-  if (event.tag === 'sync-submissions') console.log('[SW] Sync triggered');
+  if (event.tag === 'sync-submissions') {
+    console.log('[SW] Background sync: sync-submissions');
+  }
 });

@@ -1,7 +1,7 @@
 // ============================================================
 //  SBD 2026 — ITN Distribution Survey · Service Worker
 //  BUMP THIS VERSION STRING every time you upload new files:
-const CACHE_VERSION = 'sbd-2026-v15';
+const CACHE_VERSION = 'sbd-2026-v16';
 // ============================================================
 
 // ── YOUR MAIN APP FILES ───────────────────────────────────────
@@ -92,9 +92,13 @@ function toAbs(url) {
   return url.startsWith('http') ? url : new URL(url, self.location.href).href;
 }
 
-// Cache one URL — never throws, silently skips failures
+// Cache one URL — force fetch from network, bypass browser HTTP cache
 async function cacheOne(cache, url) {
-  try { await cache.add(url); }
+  try {
+    const req = new Request(url, { cache: 'reload' });
+    const res = await fetch(req);
+    if (res && res.status === 200) await cache.put(req, res);
+  }
   catch(e) { console.warn('[SW] Skipped:', url, '-', e.message); }
 }
 
@@ -148,52 +152,22 @@ self.addEventListener('fetch', event => {
   if (isExternal && !isAllowedCDN) return;
 
   event.respondWith(
-    (async () => {
-      const isHTML = event.request.mode === 'navigate' ||
-                     event.request.destination === 'document' ||
-                     url.endsWith('.html') || url.endsWith('.js') || url.endsWith('.json');
-
-      // ── HTML/JS/JSON: Network-first so updates apply immediately ──
-      if (isHTML) {
-        try {
-          const netRes = await fetch(event.request);
-          if (netRes && netRes.status === 200) {
-            const cache = await caches.open(CACHE_VERSION);
-            cache.put(event.request, netRes.clone());
-          }
-          return netRes;
-        } catch(e) {
-          // Offline fallback: serve from cache
-          const cached = await caches.match(event.request);
-          if (cached) return cached;
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      // Not in cache — fetch, store and return
+      return fetch(event.request)
+        .then(r => {
+          if (!r || r.status !== 200) return r;
+          const toCache = r.clone();
+          caches.open(CACHE_VERSION).then(c => c.put(event.request, toCache));
+          return r;
+        })
+        .catch(() => {
           if (event.request.mode === 'navigate')
             return caches.match(new URL('./offline.html', self.location.href).href);
           return new Response('', { status: 503 });
-        }
-      }
-
-      // ── Images/fonts/CSS: Cache-first (rarely change) ──────────
-      const cached = await caches.match(event.request);
-      if (cached) {
-        // Refresh in background
-        fetch(event.request.clone()).then(r => {
-          if (r && r.status === 200)
-            caches.open(CACHE_VERSION).then(c => c.put(event.request, r));
-        }).catch(() => {});
-        return cached;
-      }
-      // Not in cache — fetch and store
-      try {
-        const r = await fetch(event.request);
-        if (r && r.status === 200) {
-          const cache = await caches.open(CACHE_VERSION);
-          cache.put(event.request, r.clone());
-        }
-        return r;
-      } catch(e) {
-        return new Response('', { status: 503 });
-      }
-    })()
+        });
+    })
   );
 });
 

@@ -789,10 +789,10 @@
         let activeSchools, tree, filterLabel;
         if (currentFilter === 'old') {
             activeSchools = oldSchools;
-            filterLabel = 'OLD SCHOOLS ONLY';
+            filterLabel = 'EMIS SCHOOLS ONLY';
         } else if (currentFilter === 'new') {
             activeSchools = newSchools;
-            filterLabel = 'NEW SCHOOLS ONLY';
+            filterLabel = 'Non-EMIS SCHOOLS ONLY';
         } else {
             activeSchools = allSchools;
             filterLabel = 'ALL SCHOOLS';

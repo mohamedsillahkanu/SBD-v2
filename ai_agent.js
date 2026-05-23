@@ -895,9 +895,9 @@
     
         <!-- Filter Bar -->
         <div class="tg-filter-bar">
-            <button class="tg-filter-btn ${currentFilter === 'old' ? 'active' : ''}" onclick="setTargetsFilter('old')">🏛️ OLD SCHOOLS ONLY</button>
-            <button class="tg-filter-btn ${currentFilter === 'new' ? 'active' : ''}" onclick="setTargetsFilter('new')">🆕 NEW SCHOOLS ONLY</button>
-            <button class="tg-filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="setTargetsFilter('all')">📋 ALL SCHOOLS</button>
+            <button class="tg-filter-btn ${currentFilter === 'old' ? 'active' : ''}" onclick="setTargetsFilter('old')">EMIS SCHOOLS ONLY</button>
+            <button class="tg-filter-btn ${currentFilter === 'new' ? 'active' : ''}" onclick="setTargetsFilter('new')">NON-EMIS SCHOOLS ONLY</button>
+            <button class="tg-filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="setTargetsFilter('all')">EMIS & NON-EMIS SCHOOLS</button>
         </div>
     
         <!-- Summary Cards -->
@@ -912,11 +912,7 @@
                 <div class="tg-kl">New Schools</div>
                 <div style="font-size:10px;margin-top:4px;">${newSubmitted} submitted · ${newPct}%</div>
             </div>
-            <div class="tg-kpi b" onclick="setTargetsFilter('all')">
-                <div class="tg-kv">${(oldTotal+newTotal).toLocaleString()}</div>
-                <div class="tg-kl">Total Target</div>
-                <div style="font-size:10px;margin-top:4px;">${(oldSubmitted+newSubmitted)} submitted</div>
-            </div>
+    
             <div class="tg-kpi g">
                 <div class="tg-kv">${natSubmitted.toLocaleString()}</div>
                 <div class="tg-kl">Submitted (Filtered)</div>

@@ -904,18 +904,18 @@
         <div class="tg-kpi-row">
             <div class="tg-kpi b" onclick="setTargetsFilter('old')">
                 <div class="tg-kv">${oldTotal.toLocaleString()}</div>
-                <div class="tg-kl">Old Schools</div>
+                <div class="tg-kl">EMIS Schools</div>
                 <div style="font-size:10px;margin-top:4px;">${oldSubmitted} submitted · ${oldPct}%</div>
             </div>
             <div class="tg-kpi" style="border-top-color:#1565c0;" onclick="setTargetsFilter('new')">
                 <div class="tg-kv" style="color:#1565c0;">${newTotal.toLocaleString()}</div>
-                <div class="tg-kl">New Schools</div>
+                <div class="tg-kl">Non-EMIS Schools</div>
                 <div style="font-size:10px;margin-top:4px;">${newSubmitted} submitted · ${newPct}%</div>
             </div>
     
             <div class="tg-kpi g">
                 <div class="tg-kv">${natSubmitted.toLocaleString()}</div>
-                <div class="tg-kl">Submitted (Filtered)</div>
+                <div class="tg-kl">Submitted</div>
             </div>
             <div class="tg-kpi ${natPct>=80?'g':natPct>=50?'o':'r'}">
                 <div class="tg-kv">${natPct}%</div>
